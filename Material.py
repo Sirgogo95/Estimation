@@ -63,13 +63,10 @@ class material:
     def unidad(self, unidad):
         self._unidad = unidad
 
-    def Precio_Final(self):
-        return self.precio * (1 + self.tasa)
-
     def __str__(self):
         return f"Nombre: {self.nombre} \nCodigo: {self.codigo} \nPrecio sin Itbis: {self.precio} \nUnidad: {self.unidad}"
     
 
 
-m = material("HN",set("Hierro negro"),"Tubo de Hierro negro","",150,10,"U")
-print(m)
+m = material("HN",set("Hierro negro"),"Tubo de Hierro negro","",150,30,"U")
+print(m.tasa)
