@@ -1,4 +1,4 @@
-class material:
+class Material:
     def __init__(self ,codigo ,familias = set() , nombre = "" , alias = set() , precio = 0.0 , tasa = 0.0 , unidad = "U"):
         self.codigo = codigo
         self.familias = familias
@@ -66,7 +66,15 @@ class material:
     def __str__(self):
         return f"Nombre: {self.nombre} \nCodigo: {self.codigo} \nPrecio sin Itbis: {self.precio} \nUnidad: {self.unidad}"
     
+    def __add__(self, other):
+        return self.precio + other.precio
+    
+
+def main():
+    m = Material("HN",set("Hierro negro"),"Tubo de Hierro negro","",150,30,"U")
+    n = Material("HN",set("Hierro negro"),"Tubo de Hierro negro","",200,10,"U")
+    print(m.precio+n.precio)
 
 
-m = material("HN",set("Hierro negro"),"Tubo de Hierro negro","",150,30,"U")
-print(m.tasa)
+if __name__ == "__main__":
+    main()
