@@ -7,6 +7,14 @@ class Analisis:
         self.monto_mano_de_obra = monto_mano_de_obra
 
     @property
+    def listado_materiales(self):
+        a = []
+        for material in self.materiales:
+            a.append(material)
+        return a
+
+    
+    @property
     def MO(self):
         return self.mano_de_obra * self.monto_mano_de_obra
 
@@ -49,9 +57,40 @@ class Analisis:
 
         
 
+def main():
+    m = Material_Analisis("HN",set("Hierro negro"),"Tubo de Hierro negro","",150,30,"U",5,18,10,"Soporteria")
+    n = Material_Analisis("PVC",set("Hierro negro"),"Tubo de PVC","",200,10,"U",3,18,10,"Replanteo")
 
-m = Material_Analisis("HN",set("Hierro negro"),"Tubo de Hierro negro","",150,30,"U",5,18,10,"Soporteria")
-n = Material_Analisis("HN",set("Hierro negro"),"Tubo de Hierro negro","",200,10,"U",3,18,10,"Replanteo")
+    z = Analisis(m,n,mano_de_obra = 16*3)
+    print(listado(z,z,z,z,z,z,z,z))
 
-z = Analisis(m,n,mano_de_obra = 16*3)
-print(z)
+
+def listado(*analisis):
+    listado = []
+    unicos = []
+    total = []
+    filtrados = []
+    for _ in analisis:
+        for x in _.listado_materiales:
+            listado.append({"codigo": x.codigo, "cantidad": x.cantidad})
+    for _ in listado:
+        unicos.append(_["codigo"])
+
+    unicos = list(set(unicos))
+
+    for _ in unicos:
+        filtrados = list(filter(lambda codigo: codigo["codigo"] == _,listado))
+        total.append({"codigo": _, "cantidad": sum(filtrado["cantidad"] for filtrado in filtrados)})
+
+    return(total)
+
+
+
+
+
+
+
+
+
+if __name__ == "__main__":
+    main()
