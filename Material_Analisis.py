@@ -1,11 +1,12 @@
 from Material import Material
 
 class Material_Analisis(Material):
-    def __init__(self, codigo, familias = set() , nombre = "" , alias = set() , precio = 0.0 , tasa = 0.0 , unidad = "U", cantidad = 0.0, itbis = 0.0, manejo = 0.0):
+    def __init__(self, codigo, familias = set() , nombre = "" , alias = set() , precio = 0.0 , tasa = 0.0 , unidad = "U", cantidad = 0.0, itbis = 18.0, manejo = 10.0, categoria = ""):
         super().__init__(codigo ,familias, nombre, alias, precio, tasa, unidad)
         self.cantidad = cantidad
         self.itbis = itbis
         self.manejo = manejo
+        self.categoria = categoria
 
     @property
     def cantidad(self):
@@ -17,7 +18,7 @@ class Material_Analisis(Material):
             raise ValueError("Cantidad no puede ser negativa")
         else:
             self._cantidad = cantidad
-
+#itbis
     @property
     def itbis(self):
         return self._itbis
@@ -25,7 +26,7 @@ class Material_Analisis(Material):
     @itbis.setter
     def itbis(self, itbis = 0.0):
         self._itbis = itbis/100
-
+#manejo
     @property
     def manejo(self):
         return self._manejo
@@ -33,7 +34,15 @@ class Material_Analisis(Material):
     @manejo.setter
     def manejo(self, manejo = 0.0):
         self._manejo = manejo/100
-
+#categoria
+    @property
+    def categoria(self):
+        return self._categoria
+    
+    @categoria.setter
+    def categoria(self, categoria = ""):
+        self._categoria = categoria
+###
     @property
     def itbism(self):
         return self._itbis * self.precio
