@@ -1,7 +1,8 @@
 from Material_Analisis import Material_Analisis
 
 class Analisis:
-    def __init__(self,*materiales,mano_de_obra = 0.0,monto_mano_de_obra = 350.0):
+    def __init__(self,*materiales,codigo = "",mano_de_obra = 0.0,monto_mano_de_obra = 350.0):
+        self.codigo = codigo
         self.materiales = materiales
         self.mano_de_obra = mano_de_obra
         self.monto_mano_de_obra = monto_mano_de_obra
@@ -63,6 +64,7 @@ def main():
 
     z = Analisis(m,n,mano_de_obra = 16*3)
     print(listado(z,z,z,z,z,z,z,z))
+    print (z)
 
 
 def listado(*analisis):
