@@ -11,8 +11,8 @@
         
         <div class="sidebar">
             <div class="menu_head">
-            <div class="menu_button"><i class='bx bx-menu'></i></div>
-            <div class="logo_name">SCT Solutions</i></div>
+            <button type="submit" class="menu_button" id="menu_button"  onclick="inactivate()"><i class='bx bx-menu'></i></button>
+            <div class="logo_name" id="logo_name">SCT Solutions</i></div>
             </div>
 
             <div class="menu_options">
@@ -35,6 +35,11 @@
                     <li class="options">
                         <i class='bx bxs-coin-stack' ></i>
                         <span>Precios</span>
+                    </li>
+
+                    <li class="options">
+                        <i class='bx bxs-contact'></i>
+                        <span>Suplidores</span>
                     </li>
 
                     <li class="options">
@@ -61,11 +66,12 @@
             </div>
         </div>
 
-        <div class="wrapper">
+        <div class="wrapper" id="wrapper">
             <p>Hello</p>
 
         </div>
     
+        <script src="script.js"></script>
     </body>
 
 
