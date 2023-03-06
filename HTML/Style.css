@@ -6,7 +6,7 @@
 }
 
 .sidebar{
-    width: 275px;
+    width: 280px;
     background-color: grey ;
     min-height: 100vh;
     position: fixed;
@@ -84,11 +84,10 @@ body{
 
 
 .wrapper{
-    margin-left: 275px;
+    margin-left: 280px;
     padding: 10px;
-    max-width: calc(100% - 275px);
+    max-width: calc(100% - 280px);
     min-height: 100vh;
-    font-size: 100px;
     background-color: rgb(233,233,233); 
 }
 
@@ -105,8 +104,7 @@ body{
   }
 
 
-
-
+  
 
 
 
