@@ -54,12 +54,28 @@ div > ul {
     display: flex;
     font-size: 22.5px;
     color: orange;
-    padding: 15px;
     align-items: center;
     height: 56px;
-
+   
+    
 }
 
+.options > a{
+    color: orange;
+    text-decoration: none;
+    width: 260px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+
+.options > a:hover{
+    color: grey;
+    text-decoration: none;
+
+}
 
 .options:hover{
     background-color: orange;
@@ -69,11 +85,6 @@ div > ul {
 
 }
 
-.options > span {
-    padding-left: 10px;
-    padding-right: 10px;
-     
-}
 
 body{
     position: relative;
@@ -104,18 +115,14 @@ body{
   }
 
 
-  
 
-
-
-
-.inactive-menu_options > ul > .options > span{
+.inactive-menu_options > ul > .options > a > span{
     display: none;
 }
 
 .inactive-menu_options{
-    display: flex;
-    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
 
 .inactive-logo_name{

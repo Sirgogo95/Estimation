@@ -7,10 +7,22 @@ let wrapper = document.querySelector(".wrapper");
 
 
 function inactivate(){
+    if (localStorage.getItem("active") == "si") {
+        localStorage.setItem("active", "no");
+    } else {
+        localStorage.setItem("active", "si")
+    }
     options.classList.toggle("inactive-options");
     menu_options.classList.toggle("inactive-menu_options");
     logo_name.classList.toggle("inactive-logo_name");
     sidebar.classList.toggle("inactive-sidebar");
-    wrapper.classList.toggle("inactive-wrapper");
-
+    wrapper.classList.toggle("inactive-wrapper");  
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+    if (localStorage.getItem("active") == "no"){
+        inactivate()
+        localStorage.setItem("active", "no")
+    }
+
+})
