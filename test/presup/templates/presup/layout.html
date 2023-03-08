@@ -1,14 +1,86 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html>
     <head>
-
-        <title>Presupuesto</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+        <link href="{% static 'presup/Style.css' %}" rel='stylesheet'>
+        <title>{% block title %}{% endblock %}</title>
+        {% load bootstrap5 %}
+        {% bootstrap_css %}
+        {% bootstrap_javascript %}
 
     </head>
     <body>
-        {% block body %}
-        {% endblock %}
+        
+        <div class="sidebar">
+            <div class="menu_head">
+            <button type="submit" class="menu_button" id="menu_button"  onclick="inactivate()"><i class='bx bx-menu'></i></button>
+            <div class="logo_name" id="logo_name">Celestin Solutions</i></div>
+            </div>
+
+            <div class="menu_options">
+                <ul>
+                    <li class="options">
+                        <i class='bx bxs-dashboard' ></i>
+                        <span>Presupuesto</span>
+                    </li>
+
+                    <li class="options">
+                        <i class='bx bx-sitemap' ></i>
+                        <span>Analisis</span>
+                    </li>
+
+                    <li class="options">
+                        <i class='bx bxs-book-content'></i>
+                        <span>Materiales</span>
+                    </li>
+
+                    <li class="options">
+                        <i class='bx bxs-coin-stack' ></i>
+                        <span>Precios</span>
+                    </li>
+
+                    <li class="options">
+                        <i class='bx bxs-contact'></i>
+                        <span>Suplidores</span>
+                    </li>
+
+                    <li class="options">
+                        <i class='bx bx-dollar' ></i>
+                        <span>Cubicaciones</span>
+                    </li>
+
+                    <li class="options">
+                        <i class='bx bx-calendar-exclamation' ></i>
+                        <span>Cronogramas</span>
+                    </li>
+
+                    <li class="options">
+                        <i class='bx bx-bar-chart-alt' ></i>
+                        <span>Indice Precios</span>
+                    </li>
+
+                    <li class="options">
+                        <i class='bx bxs-cog' ></i>
+                        <span>Configuracion</span>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+
+        <div class="wrapper" id="wrapper">
+            {% block body %}
+            {% endblock %}
+
+        </div>
+    
+        <script src="{% static 'presup/script.js' %}"></script>
     </body>
 
 
 </html>
+        
+    

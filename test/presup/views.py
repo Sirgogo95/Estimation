@@ -8,3 +8,7 @@ def index(request):
 
 def analisis(request):
     return render(request, "presup/analisis.html")
+
+
+def precios(request):
+    return render(request, "presup/precios.html")
