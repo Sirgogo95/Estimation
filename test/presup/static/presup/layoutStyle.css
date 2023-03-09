@@ -5,6 +5,7 @@
     box-sizing: border-box;
 }
 
+/*sidebar style settings*/
 .sidebar{
     width: 280px;
     background-color: grey ;
@@ -81,27 +82,12 @@ div > ul {
     background-color: orange;
     color: grey;
     border-radius: 5px;
-    
-
 }
 
 
 body{
     position: relative;
 }
-
-
-
-
-
-.wrapper{
-    margin-left: 280px;
-    padding: 10px;
-    max-width: calc(100% - 280px);
-    min-height: 100vh;
-    background-color: rgb(233,233,233); 
-}
-
 
 .sidebar::-webkit-scrollbar {
     width: 0px;
@@ -114,8 +100,18 @@ body{
     background-color: rgba(255, 166, 0, 0);
   }
 
+/*wrapper style settings*/
+  .wrapper{
+    margin-left: 280px;
+    padding: 10px;
+    max-width: calc(100% - 280px);
+    min-height: 100vh;
+    background-color: rgb(233,233,233); 
+}
 
 
+
+/*inactive style settings*/
 .inactive-menu_options > ul > .options > a > span{
     display: none;
 }
@@ -137,3 +133,5 @@ body{
     margin-left: 85px;
     max-width: calc(100% - 85px);
 }
+
+

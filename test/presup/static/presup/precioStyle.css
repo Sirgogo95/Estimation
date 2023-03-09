@@ -1,0 +1,20 @@
+/*precios style settings*/
+.precios-search_box{
+    text-align: right;
+    width: auto;
+   
+}
+
+#search_box{
+    padding: 10px;
+    width: 300px;
+    border-radius: 10px;
+}
+
+.edit_button{
+    width: 25px;
+    height: 25px;
+    background-color: greenyellow;
+    border: none;
+}
+

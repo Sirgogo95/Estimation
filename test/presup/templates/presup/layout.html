@@ -5,7 +5,9 @@
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-        <link href="{% static 'presup/Style.css' %}" rel='stylesheet'>
+        <link href="{% static 'presup/layoutStyle.css' %}" rel='stylesheet'>
+        <link href="{% static 'presup/modalStyle.css' %}" rel='stylesheet'>
+        <link href="{% static 'presup/precioStyle.css' %}" rel='stylesheet'>
         <title>{% block title %}{% endblock %}</title>
         {% load bootstrap5 %}
         {% bootstrap_css %}
@@ -17,7 +19,7 @@
         <div class="sidebar">
             <div class="menu_head">
             <button type="submit" class="menu_button" id="menu_button"  onclick="inactivate()"><i class='bx bx-menu'></i></button>
-            <div class="logo_name" id="logo_name">Celestin Solutions</i></div>
+            <div class="logo_name" id="logo_name"></i></div>
             </div>
 
             <div class="menu_options">
@@ -95,7 +97,9 @@
 
         </div>
     
-        <script src="{% static 'presup/script.js' %}"></script>
+        <script src="{% static 'presup/layoutScript.js' %}"></script>
+        <script src="{% static 'presup/modalScript.js' %}"></script>
+        <script src="{% static 'presup/precioScript.js' %}"></script>
     </body>
 
 
