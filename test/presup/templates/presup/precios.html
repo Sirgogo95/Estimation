@@ -4,6 +4,12 @@
 
 {% block body %}
 <div class="precios-search_box">
+    <button type="button" class="btn btn-secondary"><i class='bx bxs-plus-circle' ></i></button>
+    <select class="precio_select">
+        <option value="0">Codigo</option>
+        <option value="1">Nombre</option>
+        <option value="6">Suplidor</option>
+    </select>
     <input type="search" id="search_box" onkeyup="myFunction()" onsearch="myFunction()" placeholder="Buscar">
 </div>
 <div>
@@ -34,7 +40,7 @@
                 <td>Rodfor Team, SRL</td>
                 <td>07-Dec-22</td>
                 <td></td>
-                <td><button button type="button" class="btn btn-success"><i class='bx bxs-edit'></i></button></td>  
+                <td><button button type="button" class="btn btn-success" onclick="openPrecioModal()"><i class='bx bxs-edit'></i></button></td>  
                 <td><button type="button" class="btn btn-warning"><i class='bx bxs-copy-alt' ></i></button></td>  
                 <td><button button type="button" class="btn btn-danger"><i class='bx bxs-trash'></i></button></td>               
             </tr>
@@ -49,7 +55,7 @@
                 <td>Ferretería Ochoa</td>
                 <td>07-Dec-22</td>
                 <td></td>
-                <td><button button type="button" class="btn btn-success"><i class='bx bxs-edit'></i></button></td>  
+                <td><button button type="button" class="btn btn-success" onclick="openPrecioModal()"><i class='bx bxs-edit'></i></button></td>  
                 <td><button type="button" class="btn btn-warning"><i class='bx bxs-copy-alt' ></i></button></td>  
                 <td><button button type="button" class="btn btn-danger"><i class='bx bxs-trash'></i></button></td>     
             </tr>
@@ -64,7 +70,7 @@
                 <td>Refricentro Rubiera</td>
                 <td>2/22/2023</td>
                 <td>LG</td>
-                <td><button button type="button" class="btn btn-success"><i class='bx bxs-edit'></i></button></td>  
+                <td><button button type="button" class="btn btn-success" onclick="openPrecioModal()"><i class='bx bxs-edit'></i></button></td>  
                 <td><button type="button" class="btn btn-warning"><i class='bx bxs-copy-alt' ></i></button></td>  
                 <td><button button type="button" class="btn btn-danger"><i class='bx bxs-trash'></i></button></td>       
             </tr>
@@ -79,7 +85,7 @@
                 <td>Eurotubos Industrial, S.R.L.</td>
                 <td>44803</td>
                 <td></td>
-                <td><button button type="button" class="btn btn-success"><i class='bx bxs-edit'></i></button></td>  
+                <td><button button type="button" class="btn btn-success" onclick="openPrecioModal()"><i class='bx bxs-edit'></i></button></td>  
                 <td><button type="button" class="btn btn-warning"><i class='bx bxs-copy-alt' ></i></button></td>  
                 <td><button button type="button" class="btn btn-danger"><i class='bx bxs-trash'></i></button></td>   
             </tr>
@@ -103,7 +109,18 @@
 </div>
 
 <div class="edit_precio_modal">
+    <div class="edit-precio-dialog">
+        <div class="edit_precio_dialog_header">
+            <div class="edit_precio_dialog_header_text"><span>Modificar Precio</span></div>
+            <div class="edit_precio_dialog_header_close"><button button type="button" class="btn btn-danger" onclick="closePrecioModal()">X</button></div>
+        </div>
+        
 
+
+
+
+
+    </div>
    
 </div>
 {% endblock %}

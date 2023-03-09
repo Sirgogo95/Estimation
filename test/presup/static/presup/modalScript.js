@@ -1,8 +1,13 @@
 
 function openPrecioModal(){
-    let modal = document.querySelector(".modal");
-    modal.style.display = "block";
+    var modal = document.querySelector(".edit_precio_modal");
+    modal.style.display = "flex";
   
   }
   
+function closePrecioModal(){
+    var modal = document.querySelector(".edit_precio_modal");
+    modal.style.display = "none";
+  
+  }
   

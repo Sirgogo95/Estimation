@@ -2,13 +2,13 @@
 .precios-search_box{
     text-align: right;
     width: auto;
-   
 }
 
 #search_box{
     padding: 10px;
     width: 300px;
     border-radius: 10px;
+    border: none;
 }
 
 .edit_button{
@@ -18,3 +18,13 @@
     border: none;
 }
 
+.precio_select{
+
+    border-radius: 10px;
+    height: 45px;
+    width: 150px;
+    padding: 10px;
+    border: none;
+
+
+}
