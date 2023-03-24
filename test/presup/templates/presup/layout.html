@@ -103,11 +103,13 @@
                     <div class="edit_precio_dialog_header_text"><span>Modificar Precio</span></div>
                     <div class="edit_precio_dialog_header_close"><button button type="button" class="btn btn-danger" onclick="closePrecioModal()">X</button></div>
                 </div>
-                <form method="post">
-                    {% csrf_token %}
+                <div class="edit_precio_form">
+                    <form method="post" >
+                        {% csrf_token %}
 
-                    <div><input type="text" placeholder="Nombre" name="nombre" id="nombre"></div>
-                </form>
+                        <div class="edit_precio_box"><input type="text" placeholder="Nombre" name="nombre" id="nombre"></div>
+                    </form>
+                </div>
             </div>  
         </div>
 
@@ -116,7 +118,6 @@
         <script src="{% static 'presup/modalScript.js' %}"></script>
         <script src="{% static 'presup/precioScript.js' %}"></script>
     </body>
-
 
 </html>
         

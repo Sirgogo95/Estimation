@@ -36,3 +36,15 @@
     font-weight: bold;
 }
 
+.edit_precio_form{
+    display: flex;
+    padding: 5px;
+    width: 500px;
+    height: 450px;
+ 
+}
+
+.edit_precio_box{
+    padding: 5px;
+
+}
