@@ -39,7 +39,7 @@
                     </li>
 
                     <li class="options">
-                        <a href = "{% url 'analisis' %}">
+                        <a href = "{% url 'material' %}">
                         <i class='bx bxs-book-content'></i>
                         <span>Materiales</span>
                         </a>
@@ -96,6 +96,21 @@
             {% endblock %}
 
         </div>
+
+        <div class="edit_precio_modal">
+            <div class="edit-precio-dialog">
+                <div class="edit_precio_dialog_header">
+                    <div class="edit_precio_dialog_header_text"><span>Modificar Precio</span></div>
+                    <div class="edit_precio_dialog_header_close"><button button type="button" class="btn btn-danger" onclick="closePrecioModal()">X</button></div>
+                </div>
+                <form method="post">
+                    {% csrf_token %}
+
+                    <div><input type="text" placeholder="Nombre" name="nombre" id="nombre"></div>
+                </form>
+            </div>  
+        </div>
+
     
         <script src="{% static 'presup/layoutScript.js' %}"></script>
         <script src="{% static 'presup/modalScript.js' %}"></script>

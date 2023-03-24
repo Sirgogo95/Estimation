@@ -1,5 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render
+from .models import Material
 
 # Create your views here.
 def index(request):
@@ -12,3 +13,10 @@ def analisis(request):
 
 def precios(request):
     return render(request, "presup/precios.html")
+
+
+
+def material(request):
+    listado = Material.objects.all()
+
+    return render(request, "presup/material.html", {"listado":listado})

@@ -1,3 +1,13 @@
 from django.db import models
 
-# Create your models here.
+
+
+class Material(models.Model):
+    codigo = models.CharField(max_length=64, primary_key=True)
+    familias = models.CharField(max_length=1000, null=True, blank=True, default=None)
+    nombre = models.CharField(max_length=255)
+    alias = models.CharField(max_length=1000, null=True, blank=True, default=None)
+    tasa = models.FloatField(default = 0.0)
+    unidad = models.CharField(max_length=20)
+
+
