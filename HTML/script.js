@@ -14,3 +14,8 @@ function inactivate(){
     wrapper.classList.toggle("inactive-wrapper");
 
 }
+
+
+var myModal = document.getElementById('myModal')
+var myInput = document.getElementById('myInput')
+

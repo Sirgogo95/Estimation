@@ -97,23 +97,42 @@
 
         </div>
 
-        <div class="edit_precio_modal">
-            <div class="edit-precio-dialog">
-                <div class="edit_precio_dialog_header">
-                    <div class="edit_precio_dialog_header_text"><span>Modificar Precio</span></div>
-                    <div class="edit_precio_dialog_header_close"><button button type="button" class="btn btn-danger" onclick="closePrecioModal()">X</button></div>
+        <div class="modal fade" id="material_modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title col-11 text-center" id="staticBackdropLabel">Añadir/Modificar Material</h5>
+                <button type="button" class="btn btn-danger col-auto" data-bs-dismiss="modal" aria-label="Close">X</button>
                 </div>
-                <div class="edit_precio_form">
-                    <form method="post" >
-                        {% csrf_token %}
+                <div class="modal-body">
+                    <form> 
 
-                        <div class="edit_precio_box"><input type="text" placeholder="Nombre" name="nombre" id="nombre"></div>
+
+                        <input type="text" class="form-control mb-3" placeholder="Codigo" aria-label="Codigo" aria-describedby="basic-addon1">
+
+                        <input type="text" class="form-control mb-3" placeholder="Nombre" aria-label="Nombre" aria-describedby="basic-addon1">
+
+                        <input type="text" class="form-control mb-3" placeholder="Tasa" aria-label="Tasa" aria-describedby="basic-addon1">
+
+                        <input type="text" class="form-control mb-3" placeholder="Unidad" aria-label="Unidad" aria-describedby="basic-addon1">
+
+                        <input type="text" class="form-control mb-3" placeholder="Familias" aria-label="Familias" aria-describedby="basic-addon1">
+
+                        <input type="text" class="form-control" placeholder="Alias" aria-label="Alias" aria-describedby="basic-addon1">
+
+
                     </form>
                 </div>
-            </div>  
+                <div class="modal-footer">
+                <button type="button" class="btn btn-primary">Guardar Cambios</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+            </div>
         </div>
 
-    
+
+        
         <script src="{% static 'presup/layoutScript.js' %}"></script>
         <script src="{% static 'presup/modalScript.js' %}"></script>
         <script src="{% static 'presup/precioScript.js' %}"></script>

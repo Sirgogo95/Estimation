@@ -18,5 +18,4 @@ def precios(request):
 
 def material(request):
     listado = Material.objects.all()
-
     return render(request, "presup/material.html", {"listado":listado})
