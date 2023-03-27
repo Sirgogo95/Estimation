@@ -16,6 +16,15 @@
 
 }
 
+.sidebar3{
+    width: 280px;
+    background-color: grey ;
+    min-height: 100vh;
+    top: 0;
+    bottom: 0;
+
+}
+
 .menu_head{
 display : flex;
 background-color: rgb(54, 54, 54);
@@ -130,3 +139,14 @@ body{
     margin-left: 85px;
     max-width: calc(100% - 85px);
 }
+
+
+
+
+
+
+
+
+
+
+
