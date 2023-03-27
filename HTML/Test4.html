@@ -73,6 +73,135 @@
                 </div>  
             </div>
         </div>
+
+        <table class="table table-hover" id="table table-hover">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">CODIGO</th>
+                    <th scope="col">NOMBRE</th>
+                    <th scope="col">UNIDAD</th>
+                    <th scope="col">PRECIO SIN ITBIS</th>
+                    <th scope="col">ITBIS</th>
+                    <th scope="col">PRECIO CON ITBIS</th>
+                    <th scope="col">SUPLIDOR</th>
+                    <th scope="col">FECHA</th>
+                    <th scope="col">MARCA</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">1</th>
+                    <td>MA-MISC-ABR-PERA-1½</td>
+                    <td>Abrazadera Tipo Pera 1 1/2"</td>
+                    <td>U</td>
+                    <td>37.15</td>
+                    <td>6.69</td>
+                    <td>43.84</td>
+                    <td>Rodfor Team, SRL</td>
+                    <td>07-Dec-22</td>
+                    <td></td>
+                    <td><button button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i class='bx bxs-edit'></i></button>
+                        <button type="button" class="btn btn-warning"><i class='bx bxs-copy-alt' ></i></button> 
+                        <button button type="button" class="btn btn-danger"><i class='bx bxs-trash'></i></button></td>            
+                </tr>
+                <tr>
+                    <th scope="row">2</th>
+                    <td>MA-MISC-ABR-PERA-1</td>
+                    <td>Abrazadera Tipo Pera 1"</td>
+                    <td>U</td>
+                    <td>28.09</td>
+                    <td>5.06</td>
+                    <td>33.15</td>
+                    <td>Ferretería Ochoa</td>
+                    <td>07-Dec-22</td>
+                    <td></td>
+                    <td><button button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i class='bx bxs-edit'></i></button>
+                        <button type="button" class="btn btn-warning"><i class='bx bxs-copy-alt' ></i></button> 
+                        <button button type="button" class="btn btn-danger"><i class='bx bxs-trash'></i></button></td>    
+                </tr>
+                <tr>
+                    <th scope="row">3</th>
+                    <td>EQ-COND-EVA-FCOIL-24KBTU</td>
+                    <td>Unidad Independiente Tipo Fan Coil de 24,000 BTU</td>
+                    <td>U</td>
+                    <td>124,000.00</td>
+                    <td>22,320.00</td>
+                    <td>146,320.00</td>
+                    <td>Refricentro Rubiera</td>
+                    <td>2/22/2023</td>
+                    <td>LG</td>
+                    <td><button button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i class='bx bxs-edit'></i></button>
+                        <button type="button" class="btn btn-warning"><i class='bx bxs-copy-alt' ></i></button> 
+                        <button button type="button" class="btn btn-danger"><i class='bx bxs-trash'></i></button></td>       
+                </tr>
+                <tr>
+                    <th scope="row">4</th>
+                    <td>MA-PPR-ADA-HEM-20x½</td>
+                    <td>Adaptador Hembra 20 X 1/2" PPR </td>
+                    <td>U</td>
+                    <td>60.18</td>
+                    <td>10.8324</td>
+                    <td>71.0124</td>
+                    <td>Eurotubos Industrial, S.R.L.</td>
+                    <td>44803</td>
+                    <td></td>
+                    <td><button button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i class='bx bxs-edit'></i></button>
+                        <button type="button" class="btn btn-warning"><i class='bx bxs-copy-alt' ></i></button> 
+                        <button button type="button" class="btn btn-danger"><i class='bx bxs-trash'></i></button></td>  
+                </tr>
+                <tr>
+                    <th scope="row">5</th>
+                    <td>MA-PPR-RED-BUSH-32x20</td>
+                    <td>Reduccion Bushing 32 X 20MM  PPR </td>
+                    <td>U</td>
+                    <td>13.63</td>
+                    <td>2.4534</td>
+                    <td>16.0834</td>
+                    <td>Eurotubos Industrial, S.R.L.</td>
+                    <td>44803</td>
+                    <td></td>
+                    <td><button button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#staticBackdrop""><i class='bx bxs-edit'></i></button>
+                        <button type="button" class="btn btn-warning"><i class='bx bxs-copy-alt' ></i></button> 
+                        <button button type="button" class="btn btn-danger"><i class='bx bxs-trash'></i></button></td>
+                </tr>
+            </tbody>
+        </table>  
+
+         <!-- Modal -->
+         <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title col-11 text-center" id="staticBackdropLabel">Añadir/Modificar Material</h5>
+                <button type="button" class="btn btn-danger col-auto" data-bs-dismiss="modal" aria-label="Close">X</button>
+                </div>
+                <div class="modal-body">
+                    <form> 
+
+
+                        <input type="text" class="form-control mb-3" placeholder="Codigo" aria-label="Codigo" aria-describedby="basic-addon1">
+
+                        <textarea class="form-control mb-3" placeholder="Nombre" aria-label="Nombre" aria-describedby="basic-addon1"></textarea>
+
+                        <input type="text" class="form-control mb-3" placeholder="Tasa" aria-label="Tasa" aria-describedby="basic-addon1">
+
+                        <input type="text" class="form-control mb-3" placeholder="Unidad" aria-label="Unidad" aria-describedby="basic-addon1">
+
+                        <textarea class="form-control mb-3" placeholder="Familias" aria-label="Familias" aria-describedby="basic-addon1"></textarea>
+
+                        <textarea class="form-control" placeholder="Alias" aria-label="Alias" aria-describedby="basic-addon1"></textarea>
+
+
+                    </form>
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-primary">Guardar Cambios</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+            </div>
+        </div>
     
      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 
