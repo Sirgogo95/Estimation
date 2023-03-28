@@ -15,124 +15,110 @@
 
     </head>
     <body>
-        
-        <div class="sidebar">
-            <div class="menu_head">
-            <button type="submit" class="menu_button" id="menu_button"  onclick="inactivate()"><i class='bx bx-menu'></i></button>
-            <div class="logo_name" id="logo_name"></i></div>
-            </div>
-
-            <div class="menu_options">
-                <ul>
-                    <li class="options">
-                        <a href = "{% url 'index' %}">
-                        <i class='bx bxs-dashboard' ></i>
-                        <span>Presupuesto</span>
-                        </a>
-                    </li>
-
-                    <li class="options">
-                        <a href = "{% url 'analisis' %}">
-                        <i class='bx bx-sitemap' ></i>
-                        <span class="ss">Analisis</span>
-                        </a>
-                    </li>
-
-                    <li class="options">
-                        <a href = "{% url 'material' %}">
-                        <i class='bx bxs-book-content'></i>
-                        <span>Materiales</span>
-                        </a>
-                    </li>
-
-                    <li class="options">
-                        <a href = "{% url 'precios' %}">
-                        <i class='bx bxs-coin-stack' ></i>
-                        <span>Precios</span>
-                        </a>
-                    </li>
-
-                    <li class="options">
-                        <a href = "{% url 'analisis' %}">
-                        <i class='bx bxs-contact'></i>
-                        <span>Suplidores</span>
-                        </a>
-                    </li>
-
-                    <li class="options">
-                        <a href = "{% url 'analisis' %}">
-                        <i class='bx bx-dollar' ></i>
-                        <span>Cubicaciones</span>
-                        </a>
-                    </li>
-
-                    <li class="options">
-                        <a href = "{% url 'analisis' %}">
-                        <i class='bx bx-calendar-exclamation' ></i>
-                        <span>Cronogramas</span>
-                        </a>
-                    </li>
-
-                    <li class="options">
-                        <a href = "{% url 'analisis' %}">
-                        <i class='bx bx-bar-chart-alt' ></i>
-                        <span>Indice Precios</span>
-                        </a>
-                    </li>
-
-                    <li class="options">
-                        <a href = "{% url 'analisis' %}">
-                        <i class='bx bxs-cog' ></i>
-                        <span>Configuracion</span>
-                        </a>
-                    </li>
-
-                </ul>
-            </div>
-        </div>
-
-        <div class="wrapper" id="wrapper">
-            {% block body %}
-            {% endblock %}
-
-        </div>
-
-        <div class="modal fade" id="material_modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                <h5 class="modal-title col-11 text-center" id="staticBackdropLabel">Añadir/Modificar Material</h5>
-                <button type="button" class="btn btn-danger col-auto" data-bs-dismiss="modal" aria-label="Close">X</button>
-                </div>
-                <div class="modal-body">
-                    <form> 
-
-
-                        <input type="text" class="form-control mb-3" placeholder="Codigo" aria-label="Codigo" aria-describedby="basic-addon1">
-
-                        <input type="text" class="form-control mb-3" placeholder="Nombre" aria-label="Nombre" aria-describedby="basic-addon1">
-
-                        <input type="text" class="form-control mb-3" placeholder="Tasa" aria-label="Tasa" aria-describedby="basic-addon1">
-
-                        <input type="text" class="form-control mb-3" placeholder="Unidad" aria-label="Unidad" aria-describedby="basic-addon1">
-
-                        <input type="text" class="form-control mb-3" placeholder="Familias" aria-label="Familias" aria-describedby="basic-addon1">
-
-                        <input type="text" class="form-control" placeholder="Alias" aria-label="Alias" aria-describedby="basic-addon1">
-
-
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
+            <div class="container-fluid"> 
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <button class="btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBackdrop" aria-controls="offcanvasWithBackdrop">
+                                Menu
+                            </button>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">Opcion 1</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">Opcion 2</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">Opcion 3</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">Opcion 4</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">Opcion 5</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">Opcion 6</a>
+                        </li>
+                    </ul>
+                    <form class="d-flex">
+                        <button  type="button" class="btn btn-outline-primary me-2" data-bs-toggle="modal" data-bs-target="#material_modal"><i class='bx bx-add-to-queue'></i></button>
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-primary" type="submit">Search</button>
                     </form>
                 </div>
-                <div class="modal-footer">
-                <button type="button" class="btn btn-primary">Guardar Cambios</button>
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                </div>
             </div>
+          </nav>
+    
+
+        <!-- Offcanvas -->
+        <div class="offcanvas offcanvas-start pr-5" tabindex="-1" id="offcanvasWithBackdrop" aria-labelledby="offcanvasWithBackdropLabel">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasWithBackdropLabel"></h5>
+                <button type="button" class="btn text-reset" data-bs-dismiss="offcanvas" aria-label="Close">X</button>
+                
+            </div>
+            <div class="offcanvas-body">
+                <div class="list-group list-group-flush text-center">
+                    <div class="mt-5">
+    
+                    </div>
+                    <a href="{% url 'index' %}" class="list-group-item list-group-item-action col-12">Presupuesto</a>
+                    <a href="{% url 'analisis' %}" class="list-group-item list-group-item-action col-12">Analisis</a>
+                    <a href="{% url 'material' %}" class="list-group-item list-group-item-action col-12">Materiales</a>
+                    <a href="{% url 'precios' %}" class="list-group-item list-group-item-action col-12">Precios</a>
+                    <a href="{% url 'analisis' %}" class="list-group-item list-group-item-action col-12">Suplidores</a>
+                    <a href="{% url 'analisis' %}" class="list-group-item list-group-item-action col-12">Cubicaciones</a>
+                    <a href="{% url 'analisis' %}" class="list-group-item list-group-item-action col-12">Cronogramas</a>
+                    <a href="{% url 'analisis' %}" class="list-group-item list-group-item-action col-12">Indice de Precios</a>
+                </div>  
             </div>
         </div>
 
+        {% block body %}
+        {% endblock %}
 
-        
+         <!-- Añadir/Modificar Modal -->
+        <div class="modal fade" id="material_modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <form action= "{% url 'add_material' %}" method="POST">  
+                {% csrf_token %}  
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h5 class="modal-title col-11 text-center" id="staticBackdropLabel">Añadir/Modificar Material</h5>
+                    <button type="button" class="btn btn-danger col-auto" data-bs-dismiss="modal" aria-label="Close">X</button>
+                    </div>
+                    <div class="modal-body">
+                        
+                            <input id="codigo" name="codigo" type="text" class="form-control mb-3" placeholder="Codigo" aria-label="Codigo" aria-describedby="basic-addon1">
+
+                            <textarea id="nombre" name="nombre" class="form-control mb-3" placeholder="Nombre" aria-label="Nombre" aria-describedby="basic-addon1"></textarea>
+
+                            <input id="tasa" name="tasa" type="text" class="form-control mb-3" placeholder="Tasa" aria-label="Tasa" aria-describedby="basic-addon1">
+
+                            <input id="unidad" name="unidad" type="text" class="form-control mb-3" placeholder="Unidad" aria-label="Unidad" aria-describedby="basic-addon1">
+
+                            <textarea id="familias" name="familias" class="form-control mb-3" placeholder="Familias" aria-label="Familias" aria-describedby="basic-addon1"></textarea>
+
+                            <textarea id="alias" name="alias" class="form-control" placeholder="Alias" aria-label="Alias" aria-describedby="basic-addon1"></textarea>
+ 
+                    </div>
+                    <div class="modal-footer">
+                    <input type="submit" value="Guardar Cambios" class="btn btn-primary">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+                </div>
+            </form>
+        </div>
+    
+             
         <script src="{% static 'presup/layoutScript.js' %}"></script>
         <script src="{% static 'presup/modalScript.js' %}"></script>
         <script src="{% static 'presup/precioScript.js' %}"></script>

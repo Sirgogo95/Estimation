@@ -1,16 +1,9 @@
 {% extends "presup/layout.html" %}
 
-{% block title %}Precios{% endblock %}
+{% block title %}Material{% endblock %}
 
 {% block body %}
-<div class="precios-search_box">
-    <button type="button" class="btn btn-secondary"><i class='bx bxs-plus-circle' ></i></button>
-    <select class="precio_select">
-        <option value="0">Codigo</option>
-        <option value="1">Nombre</option>
-    </select>
-    <input type="search" id="search_box" onkeyup="myFunction()" onsearch="myFunction()" placeholder="Buscar">
-</div>
+
 <div>
     <table class="table table-hover" id="table table-hover">
         <thead class="thead-dark">
@@ -33,7 +26,6 @@
                 <td>{{list.alias}}</td>
                 <td>{{list.familias}}</td>
                 <td><button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#material_modal"><i class='bx bxs-edit'></i></button></td>  
-                <td><button type="button" class="btn btn-warning"><i class='bx bxs-copy-alt' ></i></button></td>  
                 <td><button button type="button" class="btn btn-danger"><i class='bx bxs-trash'></i></button></td>               
             </tr>
             {% endfor %}
