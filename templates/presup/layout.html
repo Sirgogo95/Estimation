@@ -1,0 +1,143 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+        <link href="{% static 'presup/layoutStyle.css' %}" rel='stylesheet'>
+        <link href="{% static 'presup/modalStyle.css' %}" rel='stylesheet'>
+        <link href="{% static 'presup/precioStyle.css' %}" rel='stylesheet'>
+        <title>{% block title %}{% endblock %}</title>
+        {% load bootstrap5 %}
+        {% bootstrap_css %}
+        {% bootstrap_javascript %}
+
+    </head>
+    <body>
+        
+        <div class="sidebar">
+            <div class="menu_head">
+            <button type="submit" class="menu_button" id="menu_button"  onclick="inactivate()"><i class='bx bx-menu'></i></button>
+            <div class="logo_name" id="logo_name"></i></div>
+            </div>
+
+            <div class="menu_options">
+                <ul>
+                    <li class="options">
+                        <a href = "{% url 'index' %}">
+                        <i class='bx bxs-dashboard' ></i>
+                        <span>Presupuesto</span>
+                        </a>
+                    </li>
+
+                    <li class="options">
+                        <a href = "{% url 'analisis' %}">
+                        <i class='bx bx-sitemap' ></i>
+                        <span class="ss">Analisis</span>
+                        </a>
+                    </li>
+
+                    <li class="options">
+                        <a href = "{% url 'material' %}">
+                        <i class='bx bxs-book-content'></i>
+                        <span>Materiales</span>
+                        </a>
+                    </li>
+
+                    <li class="options">
+                        <a href = "{% url 'precios' %}">
+                        <i class='bx bxs-coin-stack' ></i>
+                        <span>Precios</span>
+                        </a>
+                    </li>
+
+                    <li class="options">
+                        <a href = "{% url 'analisis' %}">
+                        <i class='bx bxs-contact'></i>
+                        <span>Suplidores</span>
+                        </a>
+                    </li>
+
+                    <li class="options">
+                        <a href = "{% url 'analisis' %}">
+                        <i class='bx bx-dollar' ></i>
+                        <span>Cubicaciones</span>
+                        </a>
+                    </li>
+
+                    <li class="options">
+                        <a href = "{% url 'analisis' %}">
+                        <i class='bx bx-calendar-exclamation' ></i>
+                        <span>Cronogramas</span>
+                        </a>
+                    </li>
+
+                    <li class="options">
+                        <a href = "{% url 'analisis' %}">
+                        <i class='bx bx-bar-chart-alt' ></i>
+                        <span>Indice Precios</span>
+                        </a>
+                    </li>
+
+                    <li class="options">
+                        <a href = "{% url 'analisis' %}">
+                        <i class='bx bxs-cog' ></i>
+                        <span>Configuracion</span>
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+
+        <div class="wrapper" id="wrapper">
+            {% block body %}
+            {% endblock %}
+
+        </div>
+
+        <div class="modal fade" id="material_modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title col-11 text-center" id="staticBackdropLabel">Añadir/Modificar Material</h5>
+                <button type="button" class="btn btn-danger col-auto" data-bs-dismiss="modal" aria-label="Close">X</button>
+                </div>
+                <div class="modal-body">
+                    <form> 
+
+
+                        <input type="text" class="form-control mb-3" placeholder="Codigo" aria-label="Codigo" aria-describedby="basic-addon1">
+
+                        <input type="text" class="form-control mb-3" placeholder="Nombre" aria-label="Nombre" aria-describedby="basic-addon1">
+
+                        <input type="text" class="form-control mb-3" placeholder="Tasa" aria-label="Tasa" aria-describedby="basic-addon1">
+
+                        <input type="text" class="form-control mb-3" placeholder="Unidad" aria-label="Unidad" aria-describedby="basic-addon1">
+
+                        <input type="text" class="form-control mb-3" placeholder="Familias" aria-label="Familias" aria-describedby="basic-addon1">
+
+                        <input type="text" class="form-control" placeholder="Alias" aria-label="Alias" aria-describedby="basic-addon1">
+
+
+                    </form>
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-primary">Guardar Cambios</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+            </div>
+        </div>
+
+
+        
+        <script src="{% static 'presup/layoutScript.js' %}"></script>
+        <script src="{% static 'presup/modalScript.js' %}"></script>
+        <script src="{% static 'presup/precioScript.js' %}"></script>
+    </body>
+
+</html>
+        
+    
