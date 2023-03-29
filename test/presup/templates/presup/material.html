@@ -5,15 +5,16 @@
 {% block body %}
 
 <div>
-    <table class="table table-hover" id="table table-hover" data-toggle="table" data-search="true"> 
+    <table class="table table-hover" id="material_table" data-toggle="table" data-search="true"> 
         <thead class="thead-dark">
+            
             <tr>
-                <th data-field="CODIGO" scope="col">CODIGO</th>
-                <th data-field="NOMBRE" scope="col">NOMBRE</th>
-                <th data-field="TASA" scope="col">TASA</th>
-                <th data-field="UNIDAD" scope="col">UNIDAD</th>
-                <th data-field="ALIAS" scope="col">ALIAS</th>
-                <th data-field="FAMILIAS" scope="col">FAMILIAS</th>
+                <th data-field="CODIGO" scope="col">CODIGO  <button type="button" class="btn btn-outline-primary me-2" onclick="sortTable(0,'material_table')"> </button><button type="button" class="btn btn-outline-primary me-2" onclick="reverse_sortTable(0,'material_table')"> </button></th>
+                <th data-field="NOMBRE" scope="col">NOMBRE  <button type="button" class="btn btn-outline-primary me-2" onclick="sortTable(1,'material_table')"> </button><button type="button" class="btn btn-outline-primary me-2" onclick="reverse_sortTable(1,'material_table')"> </button></th>
+                <th data-field="TASA" scope="col">TASA  <button type="button" class="btn btn-outline-primary me-2" onclick="sortTable(2,'material_table')"> </button><button type="button" class="btn btn-outline-primary me-2" onclick="reverse_sortTable(2,'material_table')"> </button></th>
+                <th data-field="UNIDAD" scope="col">UNIDAD  <button type="button" class="btn btn-outline-primary me-2" onclick="sortTable(3,'material_table')"> </button><button type="button" class="btn btn-outline-primary me-2" onclick="reverse_sortTable(3,'material_table')"> </button></th>
+                <th data-field="ALIAS" scope="col">ALIAS  <button type="button" class="btn btn-outline-primary me-2" onclick="sortTable(4,'material_table')"> </button><button type="button" class="btn btn-outline-primary me-2" onclick="reverse_sortTable(4,'material_table')"> </button></th>
+                <th data-field="FAMILIAS" scope="col">FAMILIAS  <button type="button" class="btn btn-outline-primary me-2" onclick="sortTable(5,'material_table')"> </button><button type="button" class="btn btn-outline-primary me-2" onclick="reverse_sortTable(5,'material_table')"> </button></th>
             </tr>
         </thead>
         <tbody>
