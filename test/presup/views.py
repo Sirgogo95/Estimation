@@ -16,17 +16,7 @@ def precios(request):
 
 
 
-def material(request): 
-    if request.method == 'POST':
-        codigo = request.POST["codigo"]
-        nombre = request.POST["nombre"]
-        tasa = float(request.POST["tasa"])
-        unidad = request.POST["unidad"]
-        alias = request.POST["alias"]
-        familias = request.POST["familias"]
-
-        x = Material(codigo = codigo, nombre = nombre,tasa = tasa, unidad = unidad, alias = alias, familias = familias)
-        x.save()       
+def material(request):      
     listado = Material.objects.all()
     return render(request, "presup/material.html", {"listado":listado})
 
@@ -44,4 +34,14 @@ def add_material(request):
         x.save()
     listado = Material.objects.all()
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+def eliminar_material(request):
+    if request.method == 'POST':
+        codigo = request.POST["codigo-eliminar"]
+
+        x = Material.objects.get(codigo=codigo)
+        x.delete()
+    listado = Material.objects.all()
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
 

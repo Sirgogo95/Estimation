@@ -48,8 +48,8 @@
                         </li>
                     </ul>
                     <form class="d-flex">
-                        <button  type="button" class="btn btn-outline-primary me-2" data-bs-toggle="modal" data-bs-target="#material_modal"><i class='bx bx-add-to-queue'></i></button>
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <button  type="button" class="btn btn-outline-primary me-2" data-bs-toggle="modal" data-bs-target="#material_modal" onclick="clear_material_modal()"><i class='bx bx-add-to-queue'></i></button>
+                        <input id="searchbox" class="form-control me-2" type="search" placeholder="Search" aria-label="Search" onkeyup="myFunction()" onsearch="myFunction()">
                         <button class="btn btn-outline-primary" type="submit">Search</button>
                     </form>
                 </div>
@@ -84,7 +84,7 @@
         {% block body %}
         {% endblock %}
 
-         <!-- Añadir/Modificar Modal -->
+         <!-- Añadir/Modificar Material Modal -->
         <div class="modal fade" id="material_modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <form action= "{% url 'add_material' %}" method="POST">  
                 {% csrf_token %}  
@@ -118,6 +118,29 @@
             </form>
         </div>
     
+         <!-- Eliminar Material Modal -->
+        <div class="modal fade" id="eliminar_material_modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <form action= "{% url 'eliminar_material' %}" method="POST">  
+                {% csrf_token %}  
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h5 class="modal-title col-11 text-center" id="staticBackdropLabel">Desea eliminar el Material</h5>
+                    <button type="button" class="btn btn-danger col-auto" data-bs-dismiss="modal" aria-label="Close">X</button>
+                    </div>
+                    <div class="modal-body" style="display: none" >
+                        
+                            <input id="codigo-eliminar" name="codigo-eliminar" type="text" class="form-control mb-3" placeholder="Codigo" aria-label="Codigo" aria-describedby="basic-addon1">
+
+                    </div>
+                    <div class="modal-footer">
+                    <input type="submit" value="Eliminar" class="btn btn-primary">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+                </div>
+            </form>
+        </div>
              
         <script src="{% static 'presup/layoutScript.js' %}"></script>
         <script src="{% static 'presup/modalScript.js' %}"></script>
