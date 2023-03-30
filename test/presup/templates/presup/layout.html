@@ -50,7 +50,6 @@
                     <form class="d-flex">
                         <button  type="button" class="btn btn-outline-primary me-2" data-bs-toggle="modal" data-bs-target="#material_modal" onclick="clear_material_modal()"><i class='bx bx-add-to-queue'></i></button>
                         <input id="searchbox" class="form-control me-2" type="search" placeholder="Search" aria-label="Search" onkeyup="myFunction()" onsearch="myFunction()">
-                        <button class="btn btn-outline-primary" type="submit">Search</button>
                     </form>
                 </div>
             </div>
@@ -96,13 +95,13 @@
                     </div>
                     <div class="modal-body">
                         
-                            <input id="codigo" name="codigo" type="text" class="form-control mb-3" placeholder="Codigo" aria-label="Codigo" aria-describedby="basic-addon1">
+                            <input id="codigo" name="codigo" type="text" class="form-control mb-3" placeholder="Codigo" aria-label="Codigo" aria-describedby="basic-addon1" required>
 
-                            <textarea id="nombre" name="nombre" class="form-control mb-3" placeholder="Nombre" aria-label="Nombre" aria-describedby="basic-addon1"></textarea>
+                            <textarea id="nombre" name="nombre" class="form-control mb-3" placeholder="Nombre" aria-label="Nombre" aria-describedby="basic-addon1" required></textarea>
 
                             <input id="tasa" name="tasa" type="text" class="form-control mb-3" placeholder="Tasa" aria-label="Tasa" aria-describedby="basic-addon1">
 
-                            <input id="unidad" name="unidad" type="text" class="form-control mb-3" placeholder="Unidad" aria-label="Unidad" aria-describedby="basic-addon1">
+                            <input id="unidad" name="unidad" type="text" class="form-control mb-3" placeholder="Unidad" aria-label="Unidad" aria-describedby="basic-addon1" required>
 
                             <textarea id="familias" name="familias" class="form-control mb-3" placeholder="Familias" aria-label="Familias" aria-describedby="basic-addon1"></textarea>
 
