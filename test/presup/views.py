@@ -1,6 +1,6 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
-from .models import Material
+from .models import Material, Suplidor
 
 # Create your views here.
 def index(request):
@@ -32,7 +32,6 @@ def add_material(request):
 
         x = Material(codigo = codigo, nombre = nombre,tasa = tasa, unidad = unidad, alias = alias, familias = familias)
         x.save()
-    listado = Material.objects.all()
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 def eliminar_material(request):
@@ -41,7 +40,20 @@ def eliminar_material(request):
 
         x = Material.objects.get(codigo=codigo)
         x.delete()
-    listado = Material.objects.all()
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
+def suplidor(request):      
+    listado = Suplidor.objects.all()
+    return render(request, "presup/suplidor.html", {"listado":listado})
 
+def add_suplidor(request):
+    if request.method == 'POST':
+        suplidor = request.POST["suplidor"]
+        telefono = request.POST["telefono"]
+        ubicacion = request.POST["ubicacion"]
+        correo = request.POST["correo"]
+        nombre_vendedor = request.POST["nombre_vendedor"]
+
+        x = Suplidor(suplidor = suplidor, telefono = telefono, ubicacion = ubicacion, correo = correo, nombre_vendedor = nombre_vendedor)
+        x.save()
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))

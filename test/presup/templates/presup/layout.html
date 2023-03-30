@@ -49,6 +49,7 @@
                     </ul>
                     <form class="d-flex">
                         <button  type="button" class="btn btn-outline-primary me-2" data-bs-toggle="modal" data-bs-target="#material_modal" onclick="clear_material_modal()"><i class='bx bx-add-to-queue'></i></button>
+                        <button  type="button" class="btn btn-outline-primary me-2" data-bs-toggle="modal" data-bs-target="#suplidor_modal" onclick="clear_suplidor_modal()"><i class='bx bx-add-to-queue'></i></button>
                         <input id="searchbox" class="form-control me-2" type="search" placeholder="Search" aria-label="Search" onkeyup="myFunction()" onsearch="myFunction()">
                     </form>
                 </div>
@@ -72,7 +73,7 @@
                     <a href="{% url 'analisis' %}" class="list-group-item list-group-item-action col-12">Analisis</a>
                     <a href="{% url 'material' %}" class="list-group-item list-group-item-action col-12">Materiales</a>
                     <a href="{% url 'precios' %}" class="list-group-item list-group-item-action col-12">Precios</a>
-                    <a href="{% url 'analisis' %}" class="list-group-item list-group-item-action col-12">Suplidores</a>
+                    <a href="{% url 'suplidor' %}" class="list-group-item list-group-item-action col-12">Suplidores</a>
                     <a href="{% url 'analisis' %}" class="list-group-item list-group-item-action col-12">Cubicaciones</a>
                     <a href="{% url 'analisis' %}" class="list-group-item list-group-item-action col-12">Cronogramas</a>
                     <a href="{% url 'analisis' %}" class="list-group-item list-group-item-action col-12">Indice de Precios</a>
@@ -140,7 +141,41 @@
                 </div>
             </form>
         </div>
-             
+
+        <!-- Añadir/Modificar Suplidor Modal -->
+        <div class="modal fade" id="suplidor_modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <form action= "{% url 'add_suplidor' %}" method="POST">  
+                {% csrf_token %}  
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h5 class="modal-title col-11 text-center" id="staticBackdropLabel">Añadir/Modificar Suplidor</h5>
+                    <button type="button" class="btn btn-danger col-auto" data-bs-dismiss="modal" aria-label="Close">X</button>
+                    </div>
+                    <div class="modal-body">
+                        
+                            <input id="suplidor" name="suplidor" type="text" class="form-control mb-3" placeholder="Suplidor" aria-label="Suplidor" aria-describedby="basic-addon1" required>
+
+                            <input id="telefono" name="telefono" class="form-control mb-3" placeholder="Telefono" aria-label="telefono" aria-describedby="basic-addon1">
+
+                            <input id="ubicacion" name="ubicacion" type="text" class="form-control mb-3" placeholder="Ubicacion" aria-label="Ubicacion" aria-describedby="basic-addon1">
+
+                            <input id="correo" name="correo" type="text" class="form-control mb-3" placeholder="Correo" aria-label="Correo" aria-describedby="basic-addon1">
+
+                            <textarea id="nombre_vendedor" name="nombre_vendedor" class="form-control mb-3" placeholder="Nombre Vendedor" aria-label="Nombre Vendedor" aria-describedby="basic-addon1"></textarea>
+ 
+                    </div>
+                    <div class="modal-footer">
+                    <input type="submit" value="Guardar Cambios" class="btn btn-primary">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+                </div>
+            </form>
+        </div>
+
+
+
         <script src="{% static 'presup/layoutScript.js' %}"></script>
         <script src="{% static 'presup/modalScript.js' %}"></script>
         <script src="{% static 'presup/precioScript.js' %}"></script>

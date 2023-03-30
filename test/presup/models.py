@@ -11,3 +11,11 @@ class Material(models.Model):
     unidad = models.CharField(max_length=20)
 
 
+class Suplidor(models.Model):
+    suplidor = models.CharField(max_length=100, primary_key=True)
+    telefono = models.CharField(max_length=100, null=True, blank=True, default="")
+    ubicacion = models.CharField(max_length=255, null=True, blank=True, default="")
+    correo = models.CharField(max_length=100, null=True, blank=True, default="")
+    nombre_vendedor = models.CharField(max_length=100, null=True, blank=True, default="")
+
+

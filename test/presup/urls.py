@@ -9,5 +9,7 @@ urlpatterns = [
     path("precios", views.precios, name="precios"),
     path("material", views.material, name="material"),
     path("add_material", views.add_material, name="add_material"),
-    path("eliminar_material", views.eliminar_material, name="eliminar_material")
+    path("eliminar_material", views.eliminar_material, name="eliminar_material"),
+    path("suplidor", views.suplidor, name="suplidor"),
+    path("add_suplidor", views.add_suplidor, name="add_suplidor")
 ]
