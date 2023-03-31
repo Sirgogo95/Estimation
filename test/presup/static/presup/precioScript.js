@@ -4,7 +4,7 @@ function myFunction() {
   var input, filter, table, tr, td, i, txtValue;
   input = document.getElementById("searchbox");
   filter = input.value.toUpperCase();
-  table = document.getElementById("material_table");
+  table = document.getElementById("view_table");
   tr = table.getElementsByTagName("tr");
 
   // Loop through all table rows, and hide those who don't match the search query

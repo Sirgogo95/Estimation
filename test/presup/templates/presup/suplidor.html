@@ -5,15 +5,15 @@
 {% block body %}
 
 <div>
-    <table class="table table-hover" id="material_table" data-toggle="table" data-search="true"> 
+    <table class="table table-hover" id="view_table" data-toggle="table" data-search="true"> 
         <thead class="thead-dark">
             
             <tr>
-                <th data-field="SUPLIDOR" scope="col"><button type="button" class="btn btn-outline-primary mx-2" onclick="sortTable(0,'material_table')"></button>SUPLIDOR</button><button type="button" class="btn btn-outline-primary mx-2" onclick="reverse_sortTable(0,'material_table')"></button></th>
-                <th data-field="TELEFONO" scope="col"><button type="button" class="btn btn-outline-primary mx-2" onclick="sortTable(1,'material_table')"></button>TELEFONO<button type="button" class="btn btn-outline-primary mx-2" onclick="reverse_sortTable(1,'material_table')"> </button></th>
-                <th data-field="UBICACION" scope="col"><button type="button" class="btn btn-outline-primary mx-2" onclick="sortTable(2,'material_table')"></button>UBICACION<button type="button" class="btn btn-outline-primary mx-2" onclick="reverse_sortTable(2,'material_table')"> </button></th>
-                <th data-field="CORREO" scope="col"><button type="button" class="btn btn-outline-primary mx-2" onclick="sortTable(3,'material_table')"></button>CORREO<button type="button" class="btn btn-outline-primary mx-2" onclick="reverse_sortTable(3,'material_table')"> </button></th>
-                <th data-field="NOMBRE_VENDEDOR" scope="col"><button type="button" class="btn btn-outline-primary mx-2" onclick="sortTable(4,'material_table')"></button>NOMBRE VENDEDOR<button type="button" class="btn btn-outline-primary mx-2" onclick="reverse_sortTable(4,'material_table')"> </button></th>
+                <th data-field="SUPLIDOR" scope="col"><button type="button" class="btn btn-outline-primary mx-2" onclick="sortTable(0,'view_table')"></button>SUPLIDOR</button><button type="button" class="btn btn-outline-primary mx-2" onclick="reverse_sortTable(0,'view_table')"></button></th>
+                <th data-field="TELEFONO" scope="col"><button type="button" class="btn btn-outline-primary mx-2" onclick="sortTable(1,'view_table')"></button>TELEFONO<button type="button" class="btn btn-outline-primary mx-2" onclick="reverse_sortTable(1,'view_table')"> </button></th>
+                <th data-field="UBICACION" scope="col"><button type="button" class="btn btn-outline-primary mx-2" onclick="sortTable(2,'view_table')"></button>UBICACION<button type="button" class="btn btn-outline-primary mx-2" onclick="reverse_sortTable(2,'view_table')"> </button></th>
+                <th data-field="CORREO" scope="col"><button type="button" class="btn btn-outline-primary mx-2" onclick="sortTable(3,'view_table')"></button>CORREO<button type="button" class="btn btn-outline-primary mx-2" onclick="reverse_sortTable(3,'view_table')"> </button></th>
+                <th data-field="NOMBRE_VENDEDOR" scope="col"><button type="button" class="btn btn-outline-primary mx-2" onclick="sortTable(4,'view_table')"></button>NOMBRE VENDEDOR<button type="button" class="btn btn-outline-primary mx-2" onclick="reverse_sortTable(4,'view_table')"> </button></th>
             </tr>
         </thead>
         <tbody>
@@ -36,7 +36,7 @@
                     <i class='bx bxs-edit'></i>
                     </button>
                 </td>  
-                <td><button id ="{{list.suplidor}}" type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#eliminar_suplidor_modal" onClick="fill_eliminar_material_modal(this.id)"><i class='bx bxs-trash'></i></button></td>               
+                <td><button id ="{{list.suplidor}}" type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#eliminar_suplidor_modal" onClick="fill_eliminar_suplidor_modal(this.id)"><i class='bx bxs-trash'></i></button></td>               
             </tr>
             {% endfor %}
         </tbody>
@@ -66,7 +66,7 @@
 
     function fill_eliminar_suplidor_modal(clicked_id)
     {
-        document.getElementById("codigo-eliminar").value = clicked_id;
+        document.getElementById("suplidor-eliminar").value = clicked_id;
     }
 
 

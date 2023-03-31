@@ -153,14 +153,14 @@
                     <button type="button" class="btn btn-danger col-auto" data-bs-dismiss="modal" aria-label="Close">X</button>
                     </div>
                     <div class="modal-body">
-                        
+                            
                             <input id="suplidor" name="suplidor" type="text" class="form-control mb-3" placeholder="Suplidor" aria-label="Suplidor" aria-describedby="basic-addon1" required>
 
                             <input id="telefono" name="telefono" class="form-control mb-3" placeholder="Telefono" aria-label="telefono" aria-describedby="basic-addon1">
 
-                            <input id="ubicacion" name="ubicacion" type="text" class="form-control mb-3" placeholder="Ubicacion" aria-label="Ubicacion" aria-describedby="basic-addon1">
+                            <textarea id="ubicacion" name="ubicacion" type="text" class="form-control mb-3" placeholder="Ubicacion" aria-label="Ubicacion" aria-describedby="basic-addon1"></textarea>
 
-                            <input id="correo" name="correo" type="text" class="form-control mb-3" placeholder="Correo" aria-label="Correo" aria-describedby="basic-addon1">
+                            <textarea id="correo" name="correo" type="text" class="form-control mb-3" placeholder="Correo" aria-label="Correo" aria-describedby="basic-addon1"></textarea>
 
                             <textarea id="nombre_vendedor" name="nombre_vendedor" class="form-control mb-3" placeholder="Nombre Vendedor" aria-label="Nombre Vendedor" aria-describedby="basic-addon1"></textarea>
  
@@ -174,6 +174,29 @@
             </form>
         </div>
 
+        <!-- Eliminar Suplidor Modal -->
+        <div class="modal fade" id="eliminar_suplidor_modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <form action= "{% url 'eliminar_suplidor' %}" method="POST">  
+                {% csrf_token %}  
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h5 class="modal-title col-11 text-center" id="staticBackdropLabel">Desea eliminar el Suplidor</h5>
+                    <button type="button" class="btn btn-danger col-auto" data-bs-dismiss="modal" aria-label="Close">X</button>
+                    </div>
+                    <div class="modal-body" style="display: none" >
+                        
+                            <input id="suplidor-eliminar" name="suplidor-eliminar" type="text" class="form-control mb-3" placeholder="Codigo" aria-label="Codigo" aria-describedby="basic-addon1">
+
+                    </div>
+                    <div class="modal-footer">
+                    <input type="submit" value="Eliminar" class="btn btn-primary">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+                </div>
+            </form>
+        </div>
 
 
         <script src="{% static 'presup/layoutScript.js' %}"></script>

@@ -57,3 +57,11 @@ def add_suplidor(request):
         x = Suplidor(suplidor = suplidor, telefono = telefono, ubicacion = ubicacion, correo = correo, nombre_vendedor = nombre_vendedor)
         x.save()
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+def eliminar_suplidor(request):
+    if request.method == 'POST':
+        suplidor = request.POST["suplidor-eliminar"]
+
+        x = Suplidor.objects.get(suplidor=suplidor)
+        x.delete()
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
