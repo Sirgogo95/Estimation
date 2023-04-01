@@ -5,7 +5,7 @@
 {% block body %}
 
 <div>
-    <table class="table table-hover" id="table table-hover">
+    <table class="table table-hover" id="view_table">
         <thead class="thead-dark">
             <tr>
                 <th scope="col">CODIGO</th>
@@ -20,79 +20,71 @@
             </tr>
         </thead>
         <tbody>
+            {% for list in listado_precios %}
             <tr>
-                <td>MA-MISC-ABR-PERA-1½</td>
-                <td>Abrazadera Tipo Pera 1 1/2"</td>
-                <td>U</td>
-                <td>37.15</td>
-                <td>6.69</td>
-                <td>43.84</td>
-                <td>Rodfor Team, SRL</td>
-                <td>07-Dec-22</td>
-                <td></td>
-                <td><button button type="button" class="btn btn-success" onclick="openPrecioModal()"><i class='bx bxs-edit'></i></button></td>  
-                <td><button type="button" class="btn btn-warning"><i class='bx bxs-copy-alt' ></i></button></td>  
-                <td><button button type="button" class="btn btn-danger"><i class='bx bxs-trash'></i></button></td>               
+                <td>{{list.material.codigo}}</td>
+                <td>{{list.material.nombre}}</td>
+                <td>{{list.material.unidad}}</td>
+                <td>{{list.precio}}</td>
+                <td>{{list.itbis}}</td>
+                <td>{{list.precio_itbis}}</td>
+                <td>{{list.suplidor.suplidor}}</td>
+                <td>{{list.fecha|date:"Y-m-d"}}</td>
+                <td>{{list.marca}}</td>
+                <td><button id ="{{list.material.codigo}}_{{list.suplidor.suplidor}}"
+                    data-codigo="{{list.material.codigo}}" 
+                    data-suplidor="{{list.suplidor.suplidor}}"
+                    data-precio="{{list.precio}}" 
+                    data-marca="{{list.marca}}" 
+                    data-fecha="{{list.fecha|date:'Y-m-d'}}"
+                    button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#precios_modal"
+                    onClick="fill_precios_modal(this.id)"><i class='bx bxs-edit'></i></button>
+                
+                    <button id ="{{list.material.codigo}}_{{list.suplidor.suplidor}}__"
+                    data-codigo="{{list.material.codigo}}" 
+                    data-suplidor="{{list.suplidor.suplidor}}"
+                    data-precio="{{list.precio}}" 
+                    data-marca="{{list.marca}}" 
+                    data-fecha="{{list.fecha|date:'Y-m-d'}}"
+                    button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#eliminar_precios_modal"
+                    onClick="fill_eliminar_precios_modal(this.id)"><i class='bx bxs-trash'></i></button>
+                </td>               
             </tr>
-            <tr>
-                <td>MA-MISC-ABR-PERA-1</td>
-                <td>Abrazadera Tipo Pera 1"</td>
-                <td>U</td>
-                <td>28.09</td>
-                <td>5.06</td>
-                <td>33.15</td>
-                <td>Ferretería Ochoa</td>
-                <td>07-Dec-22</td>
-                <td></td>
-                <td><button button type="button" class="btn btn-success" onclick="openPrecioModal()"><i class='bx bxs-edit'></i></button></td>  
-                <td><button type="button" class="btn btn-warning"><i class='bx bxs-copy-alt' ></i></button></td>  
-                <td><button button type="button" class="btn btn-danger"><i class='bx bxs-trash'></i></button></td>     
-            </tr>
-            <tr>
-                <td>EQ-COND-EVA-FCOIL-24KBTU</td>
-                <td>Unidad Independiente Tipo Fan Coil de 24,000 BTU</td>
-                <td>U</td>
-                <td>124,000.00</td>
-                <td>22,320.00</td>
-                <td>146,320.00</td>
-                <td>Refricentro Rubiera</td>
-                <td>2/22/2023</td>
-                <td>LG</td>
-                <td><button button type="button" class="btn btn-success" onclick="openPrecioModal()"><i class='bx bxs-edit'></i></button></td>  
-                <td><button type="button" class="btn btn-warning"><i class='bx bxs-copy-alt' ></i></button></td>  
-                <td><button button type="button" class="btn btn-danger"><i class='bx bxs-trash'></i></button></td>       
-            </tr>
-            <tr>
-                <td>MA-PPR-ADA-HEM-20x½</td>
-                <td>Adaptador Hembra 20 X 1/2" PPR </td>
-                <td>U</td>
-                <td>60.18</td>
-                <td>10.8324</td>
-                <td>71.0124</td>
-                <td>Eurotubos Industrial, S.R.L.</td>
-                <td>44803</td>
-                <td></td>
-                <td><button button type="button" class="btn btn-success" onclick="openPrecioModal()"><i class='bx bxs-edit'></i></button></td>  
-                <td><button type="button" class="btn btn-warning"><i class='bx bxs-copy-alt' ></i></button></td>  
-                <td><button button type="button" class="btn btn-danger"><i class='bx bxs-trash'></i></button></td>   
-            </tr>
-            <tr>
-                <td>MA-PPR-RED-BUSH-32x20</td>
-                <td>Reduccion Bushing 32 X 20MM  PPR </td>
-                <td>U</td>
-                <td>13.63</td>
-                <td>2.4534</td>
-                <td>16.0834</td>
-                <td>Eurotubos Industrial, S.R.L.</td>
-                <td>44803</td>
-                <td></td>
-                <td><button button type="button" class="btn btn-success" onclick="openPrecioModal()"><i class='bx bxs-edit'></i></button></td>  
-                <td><button type="button" class="btn btn-warning"><i class='bx bxs-copy-alt' ></i></button></td>  
-                <td><button button type="button" class="btn btn-danger"><i class='bx bxs-trash'></i></button></td>   
-            </tr>
+            {% endfor %}
         </tbody>
     </table>  
 </div>
 
+<script type="text/javascript">
+    function fill_precios_modal(clicked_id)
+    {
+        const x = document.getElementById(clicked_id);
+        document.getElementById("precios_codigo").value = x.dataset.codigo;
+        document.getElementById("precios_suplidor").value = x.dataset.suplidor;
+        document.getElementById("precios_precio").value = x.dataset.precio;
+        document.getElementById("precios_marca").value = x.dataset.marca;
+        document.getElementById("precios_fecha").value = x.dataset.fecha;
+    }
 
+    function clear_precios_modal()
+    {
+        document.getElementById("precios_codigo").value = "Material";
+        document.getElementById("precios_suplidor").value = "Suplidor";
+        document.getElementById("precios_precio").value = "";
+        document.getElementById("precios_marca").value = "";
+        document.getElementById("precios_fecha").value = "";
+    }
+
+    function fill_eliminar_precios_modal(clicked_id)
+    {
+        const x = document.getElementById(clicked_id);
+        document.getElementById("precios_codigo_eliminar").value = x.dataset.codigo;
+        document.getElementById("precios_suplidor_eliminar").value = x.dataset.suplidor;
+        document.getElementById("precios_precio_eliminar").value = x.dataset.precio;
+        document.getElementById("precios_marca_eliminar").value = x.dataset.marca;
+        document.getElementById("precios_fecha_eliminar").value = x.dataset.fecha;
+    }
+
+
+</script>
 {% endblock %}

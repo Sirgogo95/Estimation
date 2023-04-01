@@ -7,7 +7,7 @@ class Material(models.Model):
     familias = models.CharField(max_length=1000, null=True, blank=True, default="")
     nombre = models.CharField(max_length=255)
     alias = models.CharField(max_length=1000, null=True, blank=True, default="")
-    tasa = models.FloatField(default = 0.0)
+    tasa = models.FloatField(default = 0)
     unidad = models.CharField(max_length=20)
 
 
@@ -19,3 +19,19 @@ class Suplidor(models.Model):
     nombre_vendedor = models.CharField(max_length=100, null=True, blank=True, default="")
 
 
+class Material_Analisis(models.Model):
+    material = models.ForeignKey(Material, on_delete=models.CASCADE)
+    suplidor = models.ForeignKey(Suplidor, on_delete=models.CASCADE)
+    precio = models.FloatField(default = 0)
+    fecha = models.DateField(null=True, blank=True, default="")
+    marca = models.CharField(max_length=100, null=True, blank=True, default="")
+
+    #itbis
+    @property
+    def itbis(self):
+        return round(self.precio * (1 + self.material.tasa / 100) * 0.18,2)
+    
+    #precio_itbis
+    @property
+    def precio_itbis(self):
+        return round(self.precio * (1 + self.material.tasa / 100) * 1.18,2)

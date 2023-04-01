@@ -50,6 +50,7 @@
                     <form class="d-flex">
                         <button  type="button" class="btn btn-outline-primary me-2" data-bs-toggle="modal" data-bs-target="#material_modal" onclick="clear_material_modal()"><i class='bx bx-add-to-queue'></i></button>
                         <button  type="button" class="btn btn-outline-primary me-2" data-bs-toggle="modal" data-bs-target="#suplidor_modal" onclick="clear_suplidor_modal()"><i class='bx bx-add-to-queue'></i></button>
+                        <button  type="button" class="btn btn-outline-primary me-2" data-bs-toggle="modal" data-bs-target="#precios_modal" onclick="clear_precios_modal()"><i class='bx bx-add-to-queue'></i></button>
                         <input id="searchbox" class="form-control me-2" type="search" placeholder="Search" aria-label="Search" onkeyup="myFunction()" onsearch="myFunction()">
                     </form>
                 </div>
@@ -197,6 +198,95 @@
                 </div>
             </form>
         </div>
+
+
+
+         <!-- Añadir/Modificar Precios Modal -->
+         <div class="modal fade" id="precios_modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <form action= "{% url 'add_precios' %}" method="POST">  
+                {% csrf_token %}  
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h5 class="modal-title col-11 text-center" id="staticBackdropLabel">Añadir/Modificar Precios</h5>
+                    <button type="button" class="btn btn-danger col-auto" data-bs-dismiss="modal" aria-label="Close">X</button>
+                    </div>
+                    <div class="modal-body">
+
+                        <select id="precios_codigo" name="precios_codigo" class="form-select mb-3" aria-label="Default select example" required>
+                            <option selected>Material</option>
+                            {% for list in listado_material %}
+                                <option value="{{list.codigo}}">{{list.nombre}}</option>
+                            {% endfor %}
+                        </select>
+
+                        <select id="precios_suplidor" name="precios_suplidor" class="form-select mb-3" aria-label="Default select example" required>
+                            <option selected>Suplidor</option>
+                            {% for list in listado_suplidor %}
+                                <option value="{{list.suplidor}}">{{list.suplidor}}</option>
+                            {% endfor %}
+                        </select>
+
+                        <input id="precios_precio" name="precios_precio" class="form-control mb-3" placeholder="Precio" aria-label="precios_precio" aria-describedby="basic-addon1">
+
+                        <input id="precios_marca" name="precios_marca" class="form-control mb-3" placeholder="Marca" aria-label="precios_marca" aria-describedby="basic-addon1">
+
+                        <input id="precios_fecha" name="precios_fecha" class="form-control mb-3" placeholder="Fecha" aria-label="precios_fecha" aria-describedby="basic-addon1">
+                           
+                    </div>
+                    <div class="modal-footer">
+                    <input type="submit" value="Guardar Cambios" class="btn btn-primary">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+                </div>
+            </form>
+        </div>
+        
+        
+
+                 <!-- Eliminar Precios Modal -->
+                 <div class="modal fade" id="eliminar_precios_modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <form action= "{% url 'eliminar_precios' %}" method="POST">  
+                        {% csrf_token %}  
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                            <h5 class="modal-title col-11 text-center" id="staticBackdropLabel">Eliminar Precios</h5>
+                            <button type="button" class="btn btn-danger col-auto" data-bs-dismiss="modal" aria-label="Close">X</button>
+                            </div>
+                            <div class="modal-body" style="display: none">
+        
+                                <select id="precios_codigo_eliminar" name="precios_codigo_eliminar" class="form-select mb-3" aria-label="Default select example" required>
+                                    <option selected>Material</option>
+                                    {% for list in listado_material %}
+                                        <option value="{{list.codigo}}">{{list.nombre}}</option>
+                                    {% endfor %}
+                                </select>
+        
+                                <select id="precios_suplidor_eliminar" name="precios_suplidor_eliminar" class="form-select mb-3" aria-label="Default select example" required>
+                                    <option selected>Suplidor</option>
+                                    {% for list in listado_suplidor %}
+                                        <option value="{{list.suplidor}}">{{list.suplidor}}</option>
+                                    {% endfor %}
+                                </select>
+        
+                                <input id="precios_precio_eliminar" name="precios_precio_eliminar" class="form-control mb-3" placeholder="Precio" aria-label="precios_precio" aria-describedby="basic-addon1">
+        
+                                <input id="precios_marca_eliminar" name="precios_marca_eliminar" class="form-control mb-3" placeholder="Marca" aria-label="precios_marca" aria-describedby="basic-addon1">
+        
+                                <input id="precios_fecha_eliminar" name="precios_fecha_eliminar" class="form-control mb-3" placeholder="Fecha" aria-label="precios_fecha" aria-describedby="basic-addon1">
+                                   
+                            </div>
+                            <div class="modal-footer">
+                            <input type="submit" value="Eliminar" class="btn btn-primary">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                            </div>
+                        </div>
+                        </div>
+                    </form>
+                </div>
+
 
 
         <script src="{% static 'presup/layoutScript.js' %}"></script>
