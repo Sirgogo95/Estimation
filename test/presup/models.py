@@ -26,6 +26,11 @@ class Material_Analisis(models.Model):
     fecha = models.DateField(null=True, blank=True, default="")
     marca = models.CharField(max_length=100, null=True, blank=True, default="")
 
+    #precio_sin_itbis
+    @property
+    def precio_sin_itbis(self):
+        return round(self.precio * (1 + self.material.tasa / 100),2)
+
     #itbis
     @property
     def itbis(self):
