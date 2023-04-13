@@ -109,3 +109,11 @@ def eliminar_suplidor(request):
         x = Suplidor.objects.get(suplidor=suplidor)
         x.delete()
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+
+
+def proyecto(request):  
+    listado_material = Material.objects.all().order_by('nombre').values()
+    listado_suplidor = Suplidor.objects.all().order_by('suplidor').values()        
+    listado = Suplidor.objects.all()
+    return render(request, "presup/proyecto.html", {"listado_material":listado_material, "listado_suplidor":listado_suplidor, "listado":listado})
