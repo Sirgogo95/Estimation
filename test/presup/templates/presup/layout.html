@@ -51,6 +51,7 @@
                         <button  type="button" class="btn btn-outline-primary me-2" data-bs-toggle="modal" data-bs-target="#material_modal" onclick="clear_material_modal()"><i class='bx bx-add-to-queue'></i></button>
                         <button  type="button" class="btn btn-outline-primary me-2" data-bs-toggle="modal" data-bs-target="#suplidor_modal" onclick="clear_suplidor_modal()"><i class='bx bx-add-to-queue'></i></button>
                         <button  type="button" class="btn btn-outline-primary me-2" data-bs-toggle="modal" data-bs-target="#precios_modal" onclick="clear_precios_modal()"><i class='bx bx-add-to-queue'></i></button>
+                        <button  type="button" class="btn btn-outline-primary me-2" data-bs-toggle="modal" data-bs-target="#cliente_modal"><i class='bx bxs-user-detail'></i></button>
                         <input id="searchbox" class="form-control me-2" type="search" placeholder="Search" aria-label="Search" onkeyup="myFunction()" onsearch="myFunction()">
                     </form>
                 </div>
@@ -71,6 +72,7 @@
     
                     </div>
                     <a href="{% url 'index' %}" class="list-group-item list-group-item-action col-12">Presupuesto</a>
+                    <a href="{% url 'cliente' %}" class="list-group-item list-group-item-action col-12">Cliente</a>
                     <a href="{% url 'proyecto' %}" class="list-group-item list-group-item-action col-12">Proyectos</a>
                     <a href="{% url 'analisis' %}" class="list-group-item list-group-item-action col-12">Analisis</a>
                     <a href="{% url 'material' %}" class="list-group-item list-group-item-action col-12">Materiales</a>
@@ -269,6 +271,35 @@
                         </div>
                     </form>
                 </div>
+
+
+
+        <!-- Añadir/Modificar cliente Modal -->
+        <div class="modal fade" id="cliente_modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <form action= "{% url 'add_cliente' %}" method="POST">  
+                {% csrf_token %}  
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h5 class="modal-title col-11 text-center" id="staticBackdropLabel">Añadir/Modificar cliente</h5>
+                    <button type="button" class="btn btn-danger col-auto" data-bs-dismiss="modal" aria-label="Close">X</button>
+                    </div>
+                    <div class="modal-body">
+                            
+                            <input id="cliente_codigo" name="cliente_codigo" type="text" class="form-control mb-3" placeholder="Codigo" aria-label="cliente_codigo" aria-describedby="basic-addon1" required>
+
+                            <input id="cliente_nombre" name="cliente_nombre" class="form-control mb-3" placeholder="Nombre" aria-label="cliente_nombre" aria-describedby="basic-addon1">
+                       
+                    </div>
+                    <div class="modal-footer">
+                    <input type="submit" value="Guardar Cambios" class="btn btn-primary">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+                </div>
+            </form>
+        </div>
+
 
 
 

@@ -49,7 +49,7 @@ class Cliente(models.Model):
 
 class Proyecto(models.Model):
     codigo_proyecto = models.CharField(max_length=64, primary_key=True)
-    codigo_cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
+    codigo_cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE, related_name="proyectos")
     imagen = models.ImageField(null=True, blank=True, upload_to="images/")
     nombre = models.CharField(max_length=200, null=True, blank=True, default="")
     fecha = models.DateField(null=True, blank=True, default="")

@@ -15,5 +15,7 @@ urlpatterns = [
     path("suplidor", views.suplidor, name="suplidor"),
     path("add_suplidor", views.add_suplidor, name="add_suplidor"),
     path("eliminar_suplidor", views.eliminar_suplidor, name="eliminar_suplidor"),
-    path("proyecto", views.proyecto, name="proyecto")
+    path("proyecto", views.proyecto, name="proyecto"),
+    path("cliente", views.cliente, name="cliente"),
+    path("add_cliente", views.add_cliente, name="add_cliente")
 ]

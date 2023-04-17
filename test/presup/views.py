@@ -1,6 +1,6 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
-from .models import Material, Suplidor, Material_Analisis
+from .models import Material, Suplidor, Material_Analisis, Cliente
 from django.core.exceptions import ObjectDoesNotExist
 
 # Create your views here.
@@ -112,6 +112,20 @@ def eliminar_suplidor(request):
         x.delete()
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
+def cliente(request):  
+    listado_material = Material.objects.all().order_by('nombre').values()
+    listado_suplidor = Suplidor.objects.all().order_by('suplidor').values()        
+    listado = Cliente.objects.all()
+    return render(request, "presup/cliente.html", {"listado_material":listado_material, "listado_suplidor":listado_suplidor, "listado":listado})
+
+def add_cliente(request): 
+    if request.method == 'POST':
+        codigo = request.POST["cliente_codigo"]
+        nombre = request.POST["cliente_nombre"]
+       
+        x = Cliente(codigo_cliente = codigo, nombre = nombre) 
+        x.save() 
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 
 def proyecto(request):  
