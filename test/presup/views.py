@@ -49,16 +49,9 @@ def add_precios(request):
 
 def eliminar_precios(request):
     if request.method == 'POST':
-        codigo = request.POST["precios_codigo_eliminar"]
-        suplidor = request.POST["precios_suplidor_eliminar"]
-        precio = request.POST["precios_precio_eliminar"]
-        marca = request.POST["precios_marca_eliminar"]
-        fecha = request.POST["precios_fecha_eliminar"]
-
-    
-        mat = Material.objects.get(codigo=codigo)
-        sup = Suplidor.objects.get(suplidor=suplidor)
-        x= Material_Analisis.objects.get(material = mat, suplidor = sup, precio = precio, marca = marca, fecha = fecha)
+        id = request.POST["precios_id_eliminar"]
+        
+        x= Material_Analisis.objects.get(id = id)
         x.delete()
         return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 

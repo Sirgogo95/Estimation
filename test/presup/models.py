@@ -40,3 +40,17 @@ class Material_Analisis(models.Model):
     @property
     def precio_itbis(self):
         return round(self.precio * (1 + self.material.tasa / 100) * 1.18,2)
+
+
+class Cliente(models.Model):
+    codigo_cliente = models.CharField(max_length=64, primary_key=True)
+    nombre = models.CharField(max_length=100, null=True, blank=True, default="")
+
+
+class Proyecto(models.Model):
+    codigo_proyecto = models.CharField(max_length=64, primary_key=True)
+    codigo_cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
+    imagen = models.ImageField(null=True, blank=True, upload_to="images/")
+    nombre = models.CharField(max_length=200, null=True, blank=True, default="")
+    fecha = models.DateField(null=True, blank=True, default="")
+    

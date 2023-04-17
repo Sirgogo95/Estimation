@@ -41,11 +41,7 @@
                     onClick="fill_precios_modal(this.id)"><i class='bx bxs-edit'></i></button>
                 
                     <button id ="{{list.material.codigo}}_{{list.suplidor.suplidor}}__"
-                    data-codigo="{{list.material.codigo}}" 
-                    data-suplidor="{{list.suplidor.suplidor}}"
-                    data-precio="{{list.precio}}" 
-                    data-marca="{{list.marca}}" 
-                    data-fecha="{{list.fecha|date:'Y-m-d'}}"
+                    data-id="{{list.id}}" 
                     button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#eliminar_precios_modal"
                     onClick="fill_eliminar_precios_modal(this.id)"><i class='bx bxs-trash'></i></button>
                 </td>               
@@ -78,11 +74,8 @@
     function fill_eliminar_precios_modal(clicked_id)
     {
         const x = document.getElementById(clicked_id);
-        document.getElementById("precios_codigo_eliminar").value = x.dataset.codigo;
-        document.getElementById("precios_suplidor_eliminar").value = x.dataset.suplidor;
-        document.getElementById("precios_precio_eliminar").value = x.dataset.precio;
-        document.getElementById("precios_marca_eliminar").value = x.dataset.marca;
-        document.getElementById("precios_fecha_eliminar").value = x.dataset.fecha;
+        document.getElementById("precios_id_eliminar").value = x.dataset.id;
+       
     }
 
 

@@ -258,26 +258,8 @@
                             </div>
                             <div class="modal-body" style="display: none">
         
-                                <select id="precios_codigo_eliminar" name="precios_codigo_eliminar" class="form-select mb-3" aria-label="Default select example" required>
-                                    <option selected>Material</option>
-                                    {% for list in listado_material %}
-                                        <option value="{{list.codigo}}">{{list.nombre}}</option>
-                                    {% endfor %}
-                                </select>
-        
-                                <select id="precios_suplidor_eliminar" name="precios_suplidor_eliminar" class="form-select mb-3" aria-label="Default select example" required>
-                                    <option selected>Suplidor</option>
-                                    {% for list in listado_suplidor %}
-                                        <option value="{{list.suplidor}}">{{list.suplidor}}</option>
-                                    {% endfor %}
-                                </select>
-        
-                                <input id="precios_precio_eliminar" name="precios_precio_eliminar" class="form-control mb-3" placeholder="Precio" aria-label="precios_precio" aria-describedby="basic-addon1">
-        
-                                <input id="precios_marca_eliminar" name="precios_marca_eliminar" class="form-control mb-3" placeholder="Marca" aria-label="precios_marca" aria-describedby="basic-addon1">
-        
-                                <input id="precios_fecha_eliminar" name="precios_fecha_eliminar" class="form-control mb-3" placeholder="Fecha" aria-label="precios_fecha" aria-describedby="basic-addon1">
-                                   
+                                <input id="precios_id_eliminar" name="precios_id_eliminar" class="form-control mb-3" placeholder="Precio" aria-label="precios_precio" aria-describedby="basic-addon1">
+         
                             </div>
                             <div class="modal-footer">
                             <input type="submit" value="Eliminar" class="btn btn-primary">
