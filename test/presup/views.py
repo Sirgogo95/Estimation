@@ -1,6 +1,7 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
 from .models import Material, Suplidor, Material_Analisis
+from django.core.exceptions import ObjectDoesNotExist
 
 # Create your views here.
 def index(request):
@@ -33,8 +34,16 @@ def add_precios(request):
 
         mat = Material.objects.get(codigo=codigo)
         sup = Suplidor.objects.get(suplidor=suplidor)
-        x= Material_Analisis(material = mat, suplidor = sup, precio = precio, marca = marca, fecha = fecha)
-        x.save()
+        try:
+            pr = Material_Analisis.objects.get(material = mat, suplidor = sup, fecha = fecha)
+            pr.precio = precio
+            pr.marca = marca
+            pr.save()
+            
+        except ObjectDoesNotExist:
+            pr= Material_Analisis(material = mat, suplidor = sup, precio = precio, marca = marca, fecha = fecha)
+            pr.save()
+        
         return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 
