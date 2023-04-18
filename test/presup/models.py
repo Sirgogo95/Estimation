@@ -54,3 +54,4 @@ class Proyecto(models.Model):
     nombre = models.CharField(max_length=200, null=True, blank=True, default="")
     fecha = models.DateField(null=True, blank=True, default="")
     
+

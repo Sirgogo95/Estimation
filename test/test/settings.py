@@ -39,9 +39,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'bootstrap5',
+    'jquery',
     'django_bootstrap_icons',
     "crispy_forms",
     "crispy_bootstrap5",
+    "bootstrap_datepicker_plus",
 ]
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"

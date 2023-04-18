@@ -2,6 +2,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
 from .models import Material, Suplidor, Material_Analisis, Cliente
 from django.core.exceptions import ObjectDoesNotExist
+from .forms import ProyectoForm
 
 # Create your views here.
 def index(request):
@@ -13,7 +14,8 @@ def index(request):
 def analisis(request):
     listado_material = Material.objects.all().order_by('nombre').values()
     listado_suplidor = Suplidor.objects.all().order_by('suplidor').values()
-    return render(request, "presup/analisis.html", {"listado_material":listado_material, "listado_suplidor":listado_suplidor})
+    form = ProyectoForm()
+    return render(request, "presup/analisis.html", {"listado_material":listado_material, "listado_suplidor":listado_suplidor, "form":form})
 
 
 def precios(request):

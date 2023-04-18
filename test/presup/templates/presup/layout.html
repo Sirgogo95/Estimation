@@ -1,5 +1,6 @@
 {% load static %}
 
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -12,6 +13,10 @@
         {% load bootstrap5 %}
         {% bootstrap_css %}
         {% bootstrap_javascript %}
+        {{ form.media }}
+        
+        
+
 
     </head>
     <body>
@@ -307,6 +312,9 @@
         <script src="{% static 'presup/modalScript.js' %}"></script>
         <script src="{% static 'presup/precioScript.js' %}"></script>
         <script src="{% static 'presup/materialScript.js' %}"></script>
+
+
+        
     </body>
 
 </html>
