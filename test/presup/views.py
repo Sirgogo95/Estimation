@@ -14,6 +14,12 @@ def index(request):
 def analisis(request):
     listado_material = Material.objects.all().order_by('nombre').values()
     listado_suplidor = Suplidor.objects.all().order_by('suplidor').values()
+    
+    if request.method == "POST":
+        form = ProyectoForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+
     form = ProyectoForm()
     return render(request, "presup/analisis.html", {"listado_material":listado_material, "listado_suplidor":listado_suplidor, "form":form})
 
