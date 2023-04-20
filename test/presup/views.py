@@ -1,6 +1,6 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
-from .models import Material, Suplidor, Material_Analisis, Cliente
+from .models import Material, Suplidor, Material_Analisis, Cliente, Proyecto
 from django.core.exceptions import ObjectDoesNotExist
 from .forms import ProyectoForm
 
@@ -22,6 +22,13 @@ def analisis(request):
 
     form = ProyectoForm()
     return render(request, "presup/analisis.html", {"listado_material":listado_material, "listado_suplidor":listado_suplidor, "form":form})
+
+def analisis2(request, pk):
+    if request.method == "POST":
+        x= Proyecto.objects.get(codigo_proyecto = pk)
+        x.delete()
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
 
 
 def precios(request):
