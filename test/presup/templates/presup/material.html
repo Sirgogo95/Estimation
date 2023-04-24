@@ -1,8 +1,3 @@
-{% extends "presup/layout.html" %}
-
-{% block title %}Material{% endblock %}
-
-{% block body %}
 
 <div>
     <table class="table table-hover" id="view_table" data-toggle="table" data-search="true"> 
@@ -27,13 +22,7 @@
                 <td>{{list.alias}}</td>
                 <td>{{list.familias}}</td>
                 <td>
-                    <button id ="{{list.codigo}}" 
-                    data-codigo="{{list.codigo}}" 
-                    data-nombre="{{list.nombre}}"
-                    data-tasa="{{list.tasa}}" 
-                    data-unidad="{{list.unidad}}" 
-                    data-alias="{{list.alias}}"
-                    data-familias="{{list.familias}}"   
+                    <button id ="{{list.codigo}}"  
                     type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#material_modal" 
                     onClick="fill_material_modal(this.id)">
                     <i class='bx bxs-edit'></i>
@@ -46,34 +35,3 @@
     </table>  
 </div>
 
-
-<script type="text/javascript">
-    function fill_material_modal(clicked_id)
-    {
-        const x = document.getElementById(clicked_id);
-        document.getElementById("codigo").value = x.dataset.codigo;
-        document.getElementById("nombre").value = x.dataset.nombre;
-        document.getElementById("tasa").value = x.dataset.tasa;
-        document.getElementById("unidad").value = x.dataset.unidad;
-        document.getElementById("alias").value = x.dataset.alias;
-        document.getElementById("familias").value = x.dataset.familias;
-    }
-
-    function clear_material_modal()
-    {
-        document.getElementById("codigo").value = "";
-        document.getElementById("nombre").value = "";
-        document.getElementById("tasa").value = "";
-        document.getElementById("unidad").value = "";
-        document.getElementById("alias").value = "";
-        document.getElementById("familias").value = "";
-    }
-
-    function fill_eliminar_material_modal(clicked_id)
-    {
-        document.getElementById("codigo-eliminar").value = clicked_id;
-    }
-
-
-</script>
-{% endblock %}

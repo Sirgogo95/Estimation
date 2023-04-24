@@ -1,4 +1,5 @@
 {% load static %}
+{% load crispy_forms_tags %} 
 
 
 <!DOCTYPE html>
@@ -56,7 +57,7 @@
                         <button  type="button" class="btn btn-outline-primary me-2" data-bs-toggle="modal" data-bs-target="#material_modal" onclick="clear_material_modal()"><i class='bx bx-add-to-queue'></i></button>
                         <button  type="button" class="btn btn-outline-primary me-2" data-bs-toggle="modal" data-bs-target="#suplidor_modal" onclick="clear_suplidor_modal()"><i class='bx bx-add-to-queue'></i></button>
                         <button  type="button" class="btn btn-outline-primary me-2" data-bs-toggle="modal" data-bs-target="#precios_modal" onclick="clear_precios_modal()"><i class='bx bx-add-to-queue'></i></button>
-                        <button  type="button" class="btn btn-outline-primary me-2" data-bs-toggle="modal" data-bs-target="#cliente_modal"><i class='bx bxs-user-detail'></i></button>
+                        <button  type="button" hx-get="{% url 'analisis' %}" hx-target="#modal_container" class="btn btn-outline-primary me-2" data-bs-toggle="modal" data-bs-target="#modal_container"><i class='bx bxs-user-detail'></i></button>
                         <input id="searchbox" class="form-control me-2" type="search" placeholder="Search" aria-label="Search" onkeyup="myFunction()" onsearch="myFunction()">
                     </form>
                 </div>
@@ -76,234 +77,37 @@
                     <div class="mt-5">
     
                     </div>
-                    <a href="{% url 'index' %}" class="list-group-item list-group-item-action col-12">Presupuesto</a>
-                    <a href="{% url 'cliente' %}" class="list-group-item list-group-item-action col-12">Cliente</a>
-                    <a href="{% url 'proyecto' %}" class="list-group-item list-group-item-action col-12">Proyectos</a>
-                    <a href="{% url 'analisis' %}" class="list-group-item list-group-item-action col-12">Analisis</a>
-                    <a href="{% url 'material' %}" class="list-group-item list-group-item-action col-12">Materiales</a>
-                    <a href="{% url 'precios' %}" class="list-group-item list-group-item-action col-12">Precios</a>
-                    <a href="{% url 'suplidor' %}" class="list-group-item list-group-item-action col-12">Suplidores</a>
-                    <a href="{% url 'analisis' %}" class="list-group-item list-group-item-action col-12">Cubicaciones</a>
-                    <a href="{% url 'analisis' %}" class="list-group-item list-group-item-action col-12">Cronogramas</a>
-                    <a href="{% url 'analisis' %}" class="list-group-item list-group-item-action col-12">Indice de Precios</a>
+                    <button hx-get="{% url 'index' %}" hx-target="#body_content" data-bs-dismiss="offcanvas" class="list-group-item list-group-item-action col-12">Presupuesto</button>
+                    <button hx-get="{% url 'cliente' %}" hx-target="#body_content" data-bs-dismiss="offcanvas" class="list-group-item list-group-item-action col-12">Cliente</button>
+                    <button hx-get="{% url 'proyecto' %}" hx-target="#body_content" data-bs-dismiss="offcanvas" class="list-group-item list-group-item-action col-12">Proyectos</button>
+                    <button hx-get="{% url 'analisis' %}" hx-target="#body_content" data-bs-dismiss="offcanvas" class="list-group-item list-group-item-action col-12">Analisis</button>
+                    <button hx-get="{% url 'material' %}" hx-target="#body_content" data-bs-dismiss="offcanvas" class="list-group-item list-group-item-action col-12">Materiales</button>
+                    <button hx-get="{% url 'precios' %}" hx-target="#body_content" data-bs-dismiss="offcanvas" class="list-group-item list-group-item-action col-12">Precios</button>
+                    <button hx-get="{% url 'suplidor' %}" hx-target="#body_content" data-bs-dismiss="offcanvas" class="list-group-item list-group-item-action col-12">Suplidores</button>
+                    <button hx-get="{% url 'analisis' %}" hx-target="#body_content" data-bs-dismiss="offcanvas" class="list-group-item list-group-item-action col-12">Cubicaciones</button>
+                    <button hx-get="{% url 'analisis' %}" hx-target="#body_content" data-bs-dismiss="offcanvas" class="list-group-item list-group-item-action col-12">Cronogramas</button>
+                    <button hx-get="{% url 'analisis' %}" hx-target="#body_content" data-bs-dismiss="offcanvas" class="list-group-item list-group-item-action col-12">Indice de Precios</button>
                 </div>  
             </div>
         </div>
 
-        {% block body %}
-        {% endblock %}
+        <div id="body_content">
+            
 
-         <!-- Añadir/Modificar Material Modal -->
-        <div class="modal fade" id="material_modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            <form action= "{% url 'add_material' %}" method="POST">  
-                {% csrf_token %}  
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                    <h5 class="modal-title col-11 text-center" id="staticBackdropLabel">Añadir/Modificar Material</h5>
-                    <button type="button" class="btn btn-danger col-auto" data-bs-dismiss="modal" aria-label="Close">X</button>
-                    </div>
-                    <div class="modal-body">
-                        
-                            <input id="codigo" name="codigo" type="text" class="form-control mb-3" placeholder="Codigo" aria-label="Codigo" aria-describedby="basic-addon1" required>
-
-                            <textarea id="nombre" name="nombre" class="form-control mb-3" placeholder="Nombre" aria-label="Nombre" aria-describedby="basic-addon1" required></textarea>
-
-                            <input id="tasa" name="tasa" type="text" class="form-control mb-3" placeholder="Tasa" aria-label="Tasa" aria-describedby="basic-addon1">
-
-                            <input id="unidad" name="unidad" type="text" class="form-control mb-3" placeholder="Unidad" aria-label="Unidad" aria-describedby="basic-addon1" required>
-
-                            <textarea id="familias" name="familias" class="form-control mb-3" placeholder="Familias" aria-label="Familias" aria-describedby="basic-addon1"></textarea>
-
-                            <textarea id="alias" name="alias" class="form-control" placeholder="Alias" aria-label="Alias" aria-describedby="basic-addon1"></textarea>
- 
-                    </div>
-                    <div class="modal-footer">
-                    <input type="submit" value="Guardar Cambios" class="btn btn-primary">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                    </div>
-                </div>
-                </div>
-            </form>
-        </div>
-    
-         <!-- Eliminar Material Modal -->
-        <div class="modal fade" id="eliminar_material_modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            <form action= "{% url 'eliminar_material' %}" method="POST">  
-                {% csrf_token %}  
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                    <h5 class="modal-title col-11 text-center" id="staticBackdropLabel">Desea eliminar el Material</h5>
-                    <button type="button" class="btn btn-danger col-auto" data-bs-dismiss="modal" aria-label="Close">X</button>
-                    </div>
-                    <div class="modal-body" style="display: none" >
-                        
-                            <input id="codigo-eliminar" name="codigo-eliminar" type="text" class="form-control mb-3" placeholder="Codigo" aria-label="Codigo" aria-describedby="basic-addon1">
-
-                    </div>
-                    <div class="modal-footer">
-                    <input type="submit" value="Eliminar" class="btn btn-primary">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                    </div>
-                </div>
-                </div>
-            </form>
         </div>
 
-        <!-- Añadir/Modificar Suplidor Modal -->
-        <div class="modal fade" id="suplidor_modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            <form action= "{% url 'add_suplidor' %}" method="POST">  
-                {% csrf_token %}  
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                    <h5 class="modal-title col-11 text-center" id="staticBackdropLabel">Añadir/Modificar Suplidor</h5>
-                    <button type="button" class="btn btn-danger col-auto" data-bs-dismiss="modal" aria-label="Close">X</button>
-                    </div>
-                    <div class="modal-body">
-                            
-                            <input id="suplidor" name="suplidor" type="text" class="form-control mb-3" placeholder="Suplidor" aria-label="Suplidor" aria-describedby="basic-addon1" required>
+        <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal_container">
+    Launch static backdrop modal
+  </button>
 
-                            <input id="telefono" name="telefono" class="form-control mb-3" placeholder="Telefono" aria-label="telefono" aria-describedby="basic-addon1">
+         <!-- Modal -->
+        <div class="modal fade" id="modal_container" >
+            <div id="dialog" class="modal-dialog" >
 
-                            <textarea id="ubicacion" name="ubicacion" type="text" class="form-control mb-3" placeholder="Ubicacion" aria-label="Ubicacion" aria-describedby="basic-addon1"></textarea>
-
-                            <textarea id="correo" name="correo" type="text" class="form-control mb-3" placeholder="Correo" aria-label="Correo" aria-describedby="basic-addon1"></textarea>
-
-                            <textarea id="nombre_vendedor" name="nombre_vendedor" class="form-control mb-3" placeholder="Nombre Vendedor" aria-label="Nombre Vendedor" aria-describedby="basic-addon1"></textarea>
- 
-                    </div>
-                    <div class="modal-footer">
-                    <input type="submit" value="Guardar Cambios" class="btn btn-primary">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                    </div>
-                </div>
-                </div>
-            </form>
-        </div>
-
-        <!-- Eliminar Suplidor Modal -->
-        <div class="modal fade" id="eliminar_suplidor_modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            <form action= "{% url 'eliminar_suplidor' %}" method="POST">  
-                {% csrf_token %}  
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                    <h5 class="modal-title col-11 text-center" id="staticBackdropLabel">Desea eliminar el Suplidor</h5>
-                    <button type="button" class="btn btn-danger col-auto" data-bs-dismiss="modal" aria-label="Close">X</button>
-                    </div>
-                    <div class="modal-body" style="display: none" >
-                        
-                            <input id="suplidor-eliminar" name="suplidor-eliminar" type="text" class="form-control mb-3" placeholder="Codigo" aria-label="Codigo" aria-describedby="basic-addon1">
-
-                    </div>
-                    <div class="modal-footer">
-                    <input type="submit" value="Eliminar" class="btn btn-primary">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                    </div>
-                </div>
-                </div>
-            </form>
-        </div>
-
-
-
-         <!-- Añadir/Modificar Precios Modal -->
-         <div class="modal fade" id="precios_modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            <form action= "{% url 'add_precios' %}" method="POST">  
-                {% csrf_token %}  
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                    <h5 class="modal-title col-11 text-center" id="staticBackdropLabel">Añadir/Modificar Precios</h5>
-                    <button type="button" class="btn btn-danger col-auto" data-bs-dismiss="modal" aria-label="Close">X</button>
-                    </div>
-                    <div class="modal-body">
-
-                        <select id="precios_codigo" name="precios_codigo" class="form-select mb-3" aria-label="Default select example" required>
-                            <option selected>Material</option>
-                            {% for list in listado_material %}
-                                <option value="{{list.codigo}}">{{list.nombre}}</option>
-                            {% endfor %}
-                        </select>
-
-                        <select id="precios_suplidor" name="precios_suplidor" class="form-select mb-3" aria-label="Default select example" required>
-                            <option selected>Suplidor</option>
-                            {% for list in listado_suplidor %}
-                                <option value="{{list.suplidor}}">{{list.suplidor}}</option>
-                            {% endfor %}
-                        </select>
-
-                        <input id="precios_precio" name="precios_precio" class="form-control mb-3" placeholder="Precio" aria-label="precios_precio" aria-describedby="basic-addon1">
-
-                        <input id="precios_marca" name="precios_marca" class="form-control mb-3" placeholder="Marca" aria-label="precios_marca" aria-describedby="basic-addon1">
-
-                        <input id="precios_fecha" name="precios_fecha" class="form-control mb-3" placeholder="Fecha" aria-label="precios_fecha" aria-describedby="basic-addon1">
-                           
-                    </div>
-                    <div class="modal-footer">
-                    <input type="submit" value="Guardar Cambios" class="btn btn-primary">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                    </div>
-                </div>
-                </div>
-            </form>
+            </div>
         </div>
         
-        
-
-                 <!-- Eliminar Precios Modal -->
-                 <div class="modal fade" id="eliminar_precios_modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                    <form action= "{% url 'eliminar_precios' %}" method="POST">  
-                        {% csrf_token %}  
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                            <h5 class="modal-title col-11 text-center" id="staticBackdropLabel">Eliminar Precios</h5>
-                            <button type="button" class="btn btn-danger col-auto" data-bs-dismiss="modal" aria-label="Close">X</button>
-                            </div>
-                            <div class="modal-body" style="display: none">
-        
-                                <input id="precios_id_eliminar" name="precios_id_eliminar" class="form-control mb-3" placeholder="Precio" aria-label="precios_precio" aria-describedby="basic-addon1">
-         
-                            </div>
-                            <div class="modal-footer">
-                            <input type="submit" value="Eliminar" class="btn btn-primary">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                            </div>
-                        </div>
-                        </div>
-                    </form>
-                </div>
-
-
-
-        <!-- Añadir/Modificar cliente Modal -->
-        <div class="modal fade" id="cliente_modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            <form action= "{% url 'add_cliente' %}" method="POST">  
-                {% csrf_token %}  
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                    <h5 class="modal-title col-11 text-center" id="staticBackdropLabel">Añadir/Modificar cliente</h5>
-                    <button type="button" class="btn btn-danger col-auto" data-bs-dismiss="modal" aria-label="Close">X</button>
-                    </div>
-                    <div class="modal-body">
-                            
-                            <input id="cliente_codigo" name="cliente_codigo" type="text" class="form-control mb-3" placeholder="Codigo" aria-label="cliente_codigo" aria-describedby="basic-addon1" required>
-
-                            <input id="cliente_nombre" name="cliente_nombre" class="form-control mb-3" placeholder="Nombre" aria-label="cliente_nombre" aria-describedby="basic-addon1">
-                       
-                    </div>
-                    <div class="modal-footer">
-                    <input type="submit" value="Guardar Cambios" class="btn btn-primary">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                    </div>
-                </div>
-                </div>
-            </form>
-        </div>
 
 
 
@@ -312,7 +116,7 @@
         <script src="{% static 'presup/modalScript.js' %}"></script>
         <script src="{% static 'presup/precioScript.js' %}"></script>
         <script src="{% static 'presup/materialScript.js' %}"></script>
-
+        <script src="https://unpkg.com/htmx.org@1.9.0"></script>
 
         
     </body>

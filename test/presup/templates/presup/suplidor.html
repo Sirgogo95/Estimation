@@ -1,8 +1,3 @@
-{% extends "presup/layout.html" %}
-
-{% block title %}Suplidor{% endblock %}
-
-{% block body %}
 
 <div>
     <table class="table table-hover" id="view_table" data-toggle="table" data-search="true"> 
@@ -43,32 +38,3 @@
     </table>  
 </div>
 
-
-<script type="text/javascript">
-    function fill_suplidor_modal(clicked_id)
-    {
-        const x = document.getElementById(clicked_id);
-        document.getElementById("suplidor").value = x.dataset.suplidor;
-        document.getElementById("telefono").value = x.dataset.telefono;
-        document.getElementById("ubicacion").value = x.dataset.ubicacion;
-        document.getElementById("correo").value = x.dataset.correo;
-        document.getElementById("nombre_vendedor").value = x.dataset.nombre_vendedor;
-    }
-
-    function clear_suplidor_modal()
-    {
-        document.getElementById("suplidor").value = "";
-        document.getElementById("telefono").value = "";
-        document.getElementById("ubicacion").value = "";
-        document.getElementById("correo").value = "";
-        document.getElementById("nombre_vendedor").value = "";
-    }
-
-    function fill_eliminar_suplidor_modal(clicked_id)
-    {
-        document.getElementById("suplidor-eliminar").value = clicked_id;
-    }
-
-
-</script>
-{% endblock %}

@@ -1,8 +1,3 @@
-{% extends "presup/layout.html" %}
-
-{% block title %}Precios{% endblock %}
-
-{% block body %}
 
 <div>
     <table class="table table-hover" id="view_table">
@@ -50,34 +45,3 @@
         </tbody>
     </table>  
 </div>
-
-<script type="text/javascript">
-    function fill_precios_modal(clicked_id)
-    {
-        const x = document.getElementById(clicked_id);
-        document.getElementById("precios_codigo").value = x.dataset.codigo;
-        document.getElementById("precios_suplidor").value = x.dataset.suplidor;
-        document.getElementById("precios_precio").value = x.dataset.precio;
-        document.getElementById("precios_marca").value = x.dataset.marca;
-        document.getElementById("precios_fecha").value = x.dataset.fecha;
-    }
-
-    function clear_precios_modal()
-    {
-        document.getElementById("precios_codigo").value = "Material";
-        document.getElementById("precios_suplidor").value = "Suplidor";
-        document.getElementById("precios_precio").value = "";
-        document.getElementById("precios_marca").value = "";
-        document.getElementById("precios_fecha").value = "";
-    }
-
-    function fill_eliminar_precios_modal(clicked_id)
-    {
-        const x = document.getElementById(clicked_id);
-        document.getElementById("precios_id_eliminar").value = x.dataset.id;
-       
-    }
-
-
-</script>
-{% endblock %}

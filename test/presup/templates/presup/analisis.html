@@ -1,38 +1,26 @@
-{% extends "presup/layout.html" %}
+
 {% load crispy_forms_tags %}
 
-{% block title %}Analisis{% endblock %}
 
-{% block body %}
-
-<button  type="button" class="btn btn-outline-primary me-2" data-bs-toggle="modal" data-bs-target="#test_modal" ><i class='bx bx-add-to-queue'></i></button>
-
-<div class="modal fade" id="test_modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <form action= "{% url 'analisis' %}" method="POST" enctype="multipart/form-data">  
+    <div class="modal-content">
+        <form action= "{% url 'analisis' %}" method="POST" enctype="multipart/form-data" >  
         {% csrf_token %}  
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-            <h5 class="modal-title col-11 text-center" id="staticBackdropLabel">Desea eliminar el Suplidor</h5>
-            <button type="button" class="btn btn-danger col-auto" data-bs-dismiss="modal" aria-label="Close">X</button>
-            </div>
-            <div class="modal-body"  >
-                
-                {{form.fields['codigo_proyecto']="PDEDD"}}
-                {{form.|crispy}} 
-                
-
-            </div>
-            <div class="modal-footer">
-            <input type="submit" value="Eliminar" class="btn btn-primary">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-            </div>
-        </div>
-        </div>
-    </form>
-</div>
+    
+                <div class="modal-header">
+                    <h5 class="modal-title col-11 text-center" id="staticBackdropLabel">Desea eliminar el Suplidor</h5>
+                    <button type="button" class="btn btn-danger col-auto" data-bs-dismiss="modal" aria-label="Close">X</button>
+                </div>
+                <div class="modal-body">
 
 
-{% endblock %}
+                    {% form %}
 
 
+                </div>
+                <div class="modal-footer">
+                    <input type="submit" value="Eliminar" class="btn btn-primary">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+    
+        </form>
+    </div>
