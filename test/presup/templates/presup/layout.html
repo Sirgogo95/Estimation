@@ -57,7 +57,7 @@
                         <button  type="button" class="btn btn-outline-primary me-2" data-bs-toggle="modal" data-bs-target="#material_modal" onclick="clear_material_modal()"><i class='bx bx-add-to-queue'></i></button>
                         <button  type="button" class="btn btn-outline-primary me-2" data-bs-toggle="modal" data-bs-target="#suplidor_modal" onclick="clear_suplidor_modal()"><i class='bx bx-add-to-queue'></i></button>
                         <button  type="button" class="btn btn-outline-primary me-2" data-bs-toggle="modal" data-bs-target="#precios_modal" onclick="clear_precios_modal()"><i class='bx bx-add-to-queue'></i></button>
-                        <button  type="button" hx-get="{% url 'analisis' %}" hx-target="#modal_container" class="btn btn-outline-primary me-2" data-bs-toggle="modal" data-bs-target="#modal_container"><i class='bx bxs-user-detail'></i></button>
+                        <button  type="button" hx-get="{% url 'analisis' %}" hx-target="#modal_container" hx-swap="innerHTML" class="btn btn-outline-primary me-2" data-bs-toggle="modal" data-bs-target="#modal"><i class='bx bxs-user-detail'></i></button>
                         <input id="searchbox" class="form-control me-2" type="search" placeholder="Search" aria-label="Search" onkeyup="myFunction()" onsearch="myFunction()">
                     </form>
                 </div>
@@ -96,16 +96,10 @@
 
         </div>
 
-        <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal_container">
-    Launch static backdrop modal
-  </button>
 
          <!-- Modal -->
-        <div class="modal fade" id="modal_container" >
-            <div id="dialog" class="modal-dialog" >
-
-            </div>
+        <div id="modal_container" >
+            
         </div>
         
 
