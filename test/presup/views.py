@@ -2,7 +2,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
 from .models import Material, Suplidor, Material_Analisis, Cliente, Proyecto
 from django.core.exceptions import ObjectDoesNotExist
-from .forms import ProyectoForm
+from .forms import ProyectoForm, MaterialForm
 
 # Create your views here.
 def index(request):
@@ -16,7 +16,6 @@ def analisis(request):
         form = ProyectoForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-
     form = ProyectoForm()
     return render(request, "presup/analisis.html", {"form":form})
 
@@ -70,25 +69,69 @@ def eliminar_precios(request):
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 def material(request):
-    listado_material = Material.objects.all().order_by('nombre').values()
-    listado_suplidor = Suplidor.objects.all() .order_by('suplidor').values()     
     listado = Material.objects.all()
-    return render(request, "presup/material.html", {"listado_material":listado_material, "listado_suplidor":listado_suplidor, "listado":listado})
+    return render(request, "presup/material.html", {"listado":listado})
 
 
 def add_material(request):
-    if request.method == 'POST':
-        codigo = request.POST["codigo"]
-        nombre = request.POST["nombre"]
-        tasa = float(request.POST["tasa"])
-        unidad = request.POST["unidad"]
-        alias = request.POST["alias"]
-        familias = request.POST["familias"]
+    if request.method == "POST":
+        form = MaterialForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+    form = MaterialForm()
+    return render(request, "presup/material_modal.html", {"form":form})
 
-        x = Material(codigo = codigo, nombre = nombre,tasa = tasa, unidad = unidad, alias = alias, familias = familias)
-        x.save()
-    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+def edit_material(request, pk):
+    x= Material.objects.get(codigo = pk)
+    if request.method == "POST":
+        form = MaterialForm(request.POST, instance=x)
+        if form.is_valid():          
+            form.save()
+    else:
+        form = MaterialForm(instance=x)
+    return render(request, "presup/material_modal.html", {"form":form})
+        
+        
+
+
 
 def eliminar_material(request):
     if request.method == 'POST':
@@ -97,6 +140,53 @@ def eliminar_material(request):
         x = Material.objects.get(codigo=codigo)
         x.delete()
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 def suplidor(request):  
     listado_material = Material.objects.all().order_by('nombre').values()

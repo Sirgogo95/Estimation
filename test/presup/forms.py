@@ -1,12 +1,11 @@
 from django import forms
 from django.forms import ModelForm
 
-from .models import Proyecto
+from .models import Material, Suplidor, Material_Analisis, Proyecto
 
 
 class DateInput(forms.DateInput):
     input_type = 'date'
-
 
 class ProyectoForm(ModelForm):
 
@@ -16,3 +15,10 @@ class ProyectoForm(ModelForm):
         widgets = {
             'fecha': DateInput(),
         }
+
+class MaterialForm(ModelForm):
+
+    class Meta:
+        model = Material
+        fields = ['codigo', 'familias', 'nombre', 'alias', 'tasa', 'unidad']
+       

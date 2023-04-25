@@ -22,13 +22,11 @@
                 <td>{{list.alias}}</td>
                 <td>{{list.familias}}</td>
                 <td>
-                    <button id ="{{list.codigo}}"  
-                    type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#material_modal" 
-                    onClick="fill_material_modal(this.id)">
+                    <button type="button" hx-get="{% url 'edit_material' list.codigo %}" hx-target="#modal_container" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modal">
                     <i class='bx bxs-edit'></i>
                     </button>
                 </td>  
-                <td><button id ="{{list.codigo}}" type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#eliminar_material_modal" onClick="fill_eliminar_material_modal(this.id)"><i class='bx bxs-trash'></i></button></td>               
+                <td><button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modal"><i class='bx bxs-trash'></i></button></td>               
             </tr>
             {% endfor %}
         </tbody>
