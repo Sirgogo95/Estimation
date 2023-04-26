@@ -1,13 +1,9 @@
-; (function () {
-    
 
-    htmx.on('htmx:afterSwap', (e) => {
-        const modal = new bootstrap.Modal(document.getElementById('modal')) 
-        console.log('htmx:afterSwap', e)
-        if(e.detail.target.id === "modal_container")
-            modal.modal('show')
-    })
+(function(){
+    const myModal = document.getElementById('modal')
 
-
-}
-    )()
+htmx.on("htmx:afterSwap", (e) => {
+  // Response targeting #dialog => show the modal
+  if (e.detail.target.id == "dialog") {
+    modal.show()
+  }})})
