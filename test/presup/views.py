@@ -111,35 +111,38 @@ def material(request):
 
 
 def add_material(request):
+    name = "Agregar Material"
     if request.method == "POST":
-        form = MaterialForm(request.POST, request.FILES)
+        form = MaterialForm(request.POST)
         if form.is_valid():
             form.save()
-    form = MaterialForm()
-    return render(request, "presup/material_modal.html", {"form":form})
+            return HttpResponse(status=204)
+    else:
+        form = MaterialForm()
+        return render(request, "presup/base_modal.html", {"form":form, "name":name})
 
 
 def edit_material(request, pk):
+    name = "Editar Material"
     x= Material.objects.get(codigo = pk)
     if request.method == "POST":
         form = MaterialForm(request.POST, instance=x)
         if form.is_valid():          
             form.save()
+            return HttpResponse(status=204)
     else:
-        form = MaterialForm(instance=x)
-    return render(request, "presup/material_modal.html", {"form":form})
+        form = MaterialForm(instance = x)
+        return render(request, "presup/base_modal.html", {"form":form, "name":name})
         
-        
 
-
-
-def eliminar_material(request):
+def delete_material(request, pk):
+    name = "Eliminar Material"
     if request.method == 'POST':
-        codigo = request.POST["codigo-eliminar"]
-
-        x = Material.objects.get(codigo=codigo)
+        x = Material.objects.get(codigo=pk)
         x.delete()
-    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+        return HttpResponse(status=204)
+    else:
+        return render(request, "presup/delete_modal.html", {"name":name})
 
 
 

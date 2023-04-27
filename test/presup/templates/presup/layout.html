@@ -54,10 +54,10 @@
                         </li>
                     </ul>
                     <form class="d-flex">
-                        <button  type="button" hx-get="{% url 'add_material' %}" hx-target="#modal_container" class="btn btn-outline-primary me-2" ><i class='bx bx-add-to-queue'></i></button>
+                        <button  type="button" hx-get="{% url 'agregar_material' %}" hx-target="#modal_container" class="btn btn-outline-primary me-2" ><i class='bx bx-add-to-queue'></i></button>
                         <button  type="button" class="btn btn-outline-primary me-2" data-bs-toggle="modal" data-bs-target="#suplidor_modal" onclick="clear_suplidor_modal()"><i class='bx bx-add-to-queue'></i></button>
                         <button  type="button" class="btn btn-outline-primary me-2" data-bs-toggle="modal" data-bs-target="#precios_modal" onclick="clear_precios_modal()"><i class='bx bx-add-to-queue'></i></button>
-                        <button  type="button" hx-get="{% url 'analisis' %}" hx-target="#modal_container" class="btn btn-outline-primary me-2" ><i class='bx bxs-user-detail'></i></button>
+                        <button  type="button" class="btn btn-outline-primary me-2" ><i class='bx bxs-user-detail'></i></button>
                         <input id="searchbox" class="form-control me-2" type="search" placeholder="Search" aria-label="Search" onkeyup="myFunction()" onsearch="myFunction()">
                     </form>
                 </div>
@@ -124,7 +124,17 @@
                 myModal.show()
                 
             }})
-            
+
+
+            htmx.on("htmx:beforeSwap", (e) => {
+               
+            // Empty response targeting #dialog => hide the modal
+            if (e.detail.target.id === "modal_container" && e.detail.xhr.status === 204) {
+                
+                var myModal = new bootstrap.Modal(document.getElementById("modal"), {});
+                myModal.hide()
+                e.detail.shouldSwap = false
+            }})
   
         </script>
 

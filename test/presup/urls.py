@@ -12,10 +12,12 @@ urlpatterns = [
     path("eliminar_precios", views.eliminar_precios, name="eliminar_precios"),
 
 
+
+
     path("material", views.material, name="material"),
-    path("material/add", views.add_material, name="add_material"),
-    path("material/edit/<str:pk>", views.edit_material, name="edit_material"),
-    path("eliminar_material", views.eliminar_material, name="eliminar_material"),
+    path("material/add", views.add_material, name="agregar_material"),
+    path("material/edit/<str:pk>", views.edit_material, name="editar_material"),
+    path("material/delete/<str:pk>", views.delete_material, name="eliminar_material"),
 
 
 
