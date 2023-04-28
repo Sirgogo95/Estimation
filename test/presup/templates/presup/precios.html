@@ -26,19 +26,14 @@
                 <td>{{list.suplidor.suplidor}}</td>
                 <td>{{list.fecha|date:"Y-m-d"}}</td>
                 <td>{{list.marca}}</td>
-                <td><button id ="{{list.material.codigo}}_{{list.suplidor.suplidor}}"
-                    data-codigo="{{list.material.codigo}}" 
-                    data-suplidor="{{list.suplidor.suplidor}}"
-                    data-precio="{{list.precio}}" 
-                    data-marca="{{list.marca}}" 
-                    data-fecha="{{list.fecha|date:'Y-m-d'}}"
-                    button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#precios_modal"
-                    onClick="fill_precios_modal(this.id)"><i class='bx bxs-edit'></i></button>
+                <td>
+                    <button type="button" class="btn btn-success" hx-get="{% url 'editar_precios' list.id %}" hx-target="#modal_container">
+                        <i class='bx bxs-edit'></i>
+                    </button>
                 
-                    <button id ="{{list.material.codigo}}_{{list.suplidor.suplidor}}__"
-                    data-id="{{list.id}}" 
-                    button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#eliminar_precios_modal"
-                    onClick="fill_eliminar_precios_modal(this.id)"><i class='bx bxs-trash'></i></button>
+                    <button type="button" class="btn btn-danger" hx-get="{% url 'eliminar_precios' list.id %}" hx-target="#modal_container">
+                        <i class='bx bxs-trash'></i>
+                    </button>
                 </td>               
             </tr>
             {% endfor %}

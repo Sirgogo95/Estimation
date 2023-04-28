@@ -2,7 +2,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
 from .models import Material, Suplidor, Material_Analisis, Cliente, Proyecto
 from django.core.exceptions import ObjectDoesNotExist
-from .forms import ProyectoForm, MaterialForm, SuplidorForm
+from .forms import ProyectoForm, MaterialForm, SuplidorForm, PreciosForm
 from django_htmx.http import trigger_client_event
 
 # Create your views here.
@@ -29,72 +29,49 @@ def analisis2(request, pk):
 
 
 def precios(request):
-    listado_material = Material.objects.all().order_by('nombre').values()
-    listado_suplidor = Suplidor.objects.all().order_by('suplidor').values()
     listado_precios = Material_Analisis.objects.all()
-    return render(request, "presup/precios.html", {"listado_material":listado_material, "listado_suplidor":listado_suplidor, "listado_precios":listado_precios})
+    return render(request, "presup/precios.html", {"listado_precios":listado_precios})
 
 
 def add_precios(request):
-    if request.method == 'POST':
-        codigo = request.POST["precios_codigo"]
-        suplidor = request.POST["precios_suplidor"]
-        precio = request.POST["precios_precio"]
-        marca = request.POST["precios_marca"]
-        fecha = request.POST["precios_fecha"]
+    name = "Agregar Precios"
+    data_path = "precios" 
+    if request.method == "POST":
+        form = PreciosForm(request.POST)
+        if form.is_valid():
+            form.save()
+            response = HttpResponse(status=200)
+            return trigger_client_event(response,"edit_precios",{})
+    else:
+        form = PreciosForm()
+        return render(request, "presup/base_modal.html", {"form":form, "name":name, "data_path":data_path})
 
 
-        mat = Material.objects.get(codigo=codigo)
-        sup = Suplidor.objects.get(suplidor=suplidor)
-        try:
-            pr = Material_Analisis.objects.get(material = mat, suplidor = sup, fecha = fecha)
-            pr.precio = precio
-            pr.marca = marca
-            pr.save()
-            
-        except ObjectDoesNotExist:
-            pr= Material_Analisis(material = mat, suplidor = sup, precio = precio, marca = marca, fecha = fecha)
-            pr.save()
+def edit_precios(request, pk):
+    name = "Editar Precios"
+    data_path = "precios"
+    x= Material_Analisis.objects.get(id = pk)
+    if request.method == "POST":
+        form = PreciosForm(request.POST, instance=x)
+        if form.is_valid():          
+            form.save()
+            response = HttpResponse(status=200)
+            return trigger_client_event(response,"edit_precios",{})
+    else:
+        form = PreciosForm(instance = x)
+        return render(request, "presup/base_modal.html", {"form":form, "name":name, "data_path":data_path})
         
-        return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
-
-def eliminar_precios(request):
+def delete_precios(request, pk):
+    name = "Eliminar Precios"
+    data_path = "precios"
     if request.method == 'POST':
-        id = request.POST["precios_id_eliminar"]
-        
-        x= Material_Analisis.objects.get(id = id)
+        x = Material_Analisis.objects.get(id=pk)
         x.delete()
-        return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        response = HttpResponse(status=200)
+        return trigger_client_event(response,"edit_precios",{})
+    else:
+        return render(request, "presup/delete_modal.html", {"name":name, "data_path":data_path})
 
 
 

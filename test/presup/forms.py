@@ -28,3 +28,13 @@ class SuplidorForm(ModelForm):
     class Meta:
         model = Suplidor
         fields = ['suplidor', 'telefono', 'ubicacion', 'correo', 'nombre_vendedor']
+
+
+class PreciosForm(ModelForm):
+
+    class Meta:
+        model = Material_Analisis
+        fields = ['material', 'suplidor', 'precio', 'fecha', 'marca']
+        widgets = {
+            'fecha': DateInput(),
+        }

@@ -10,6 +10,12 @@ class Material(models.Model):
     tasa = models.FloatField(default = 0)
     unidad = models.CharField(max_length=20)
 
+    def __str__(self):
+        """
+        String representation
+        """
+        return f'{self.nombre}'
+
 
 class Suplidor(models.Model):
     suplidor = models.CharField(max_length=100, primary_key=True)
@@ -17,6 +23,12 @@ class Suplidor(models.Model):
     ubicacion = models.CharField(max_length=255, null=True, blank=True, default="")
     correo = models.CharField(max_length=100, null=True, blank=True, default="")
     nombre_vendedor = models.CharField(max_length=100, null=True, blank=True, default="")
+
+    def __str__(self):
+        """
+        String representation
+        """
+        return f'{self.suplidor}'
 
 
 class Material_Analisis(models.Model):
