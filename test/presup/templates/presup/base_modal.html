@@ -1,10 +1,10 @@
 
 {% load crispy_forms_tags %}
 
-<div class="modal fade" id="modal" >
+<div class="modal fade" id="modal" data-path="{{data_path}}">
     <div id="dialog" class="modal-dialog" >
         <div class="modal-content">
-            <form action="{{ request.path }}" method="post"  enctype="multipart/form-data" >  
+            <form hx-post="{{ request.path }}"  enctype="multipart/form-data" >  
             {% csrf_token %}  
         
                     <div class="modal-header">

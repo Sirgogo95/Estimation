@@ -22,3 +22,9 @@ class MaterialForm(ModelForm):
         model = Material
         fields = ['codigo', 'familias', 'nombre', 'alias', 'tasa', 'unidad']
        
+
+class SuplidorForm(ModelForm):
+
+    class Meta:
+        model = Suplidor
+        fields = ['suplidor', 'telefono', 'ubicacion', 'correo', 'nombre_vendedor']

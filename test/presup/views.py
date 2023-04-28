@@ -2,7 +2,8 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
 from .models import Material, Suplidor, Material_Analisis, Cliente, Proyecto
 from django.core.exceptions import ObjectDoesNotExist
-from .forms import ProyectoForm, MaterialForm
+from .forms import ProyectoForm, MaterialForm, SuplidorForm
+from django_htmx.http import trigger_client_event
 
 # Create your views here.
 def index(request):
@@ -112,37 +113,43 @@ def material(request):
 
 def add_material(request):
     name = "Agregar Material"
+    data_path = "material" 
     if request.method == "POST":
         form = MaterialForm(request.POST)
         if form.is_valid():
             form.save()
-            return HttpResponse(status=204)
+            response = HttpResponse(status=200)
+            return trigger_client_event(response,"edit_material",{})
     else:
         form = MaterialForm()
-        return render(request, "presup/base_modal.html", {"form":form, "name":name})
+        return render(request, "presup/base_modal.html", {"form":form, "name":name, "data_path":data_path})
 
 
 def edit_material(request, pk):
     name = "Editar Material"
+    data_path = "material"
     x= Material.objects.get(codigo = pk)
     if request.method == "POST":
         form = MaterialForm(request.POST, instance=x)
         if form.is_valid():          
             form.save()
-            return HttpResponse(status=204)
+            response = HttpResponse(status=200)
+            return trigger_client_event(response,"edit_material",{})
     else:
         form = MaterialForm(instance = x)
-        return render(request, "presup/base_modal.html", {"form":form, "name":name})
+        return render(request, "presup/base_modal.html", {"form":form, "name":name, "data_path":data_path})
         
 
 def delete_material(request, pk):
     name = "Eliminar Material"
+    data_path = "material"
     if request.method == 'POST':
         x = Material.objects.get(codigo=pk)
         x.delete()
-        return HttpResponse(status=204)
+        response = HttpResponse(status=200)
+        return trigger_client_event(response,"edit_material",{})
     else:
-        return render(request, "presup/delete_modal.html", {"name":name})
+        return render(request, "presup/delete_modal.html", {"name":name, "data_path":data_path})
 
 
 
@@ -153,69 +160,86 @@ def delete_material(request, pk):
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-def suplidor(request):  
-    listado_material = Material.objects.all().order_by('nombre').values()
-    listado_suplidor = Suplidor.objects.all().order_by('suplidor').values()        
+def suplidor(request):      
     listado = Suplidor.objects.all()
-    return render(request, "presup/suplidor.html", {"listado_material":listado_material, "listado_suplidor":listado_suplidor, "listado":listado})
+    return render(request, "presup/suplidor.html", {"listado":listado})
 
 def add_suplidor(request):
+    name = "Agregar Suplidor"
+    data_path = "suplidor"
+    if request.method == "POST":
+        form = SuplidorForm(request.POST)
+        if form.is_valid():
+            form.save()
+            response = HttpResponse(status=200)
+            return trigger_client_event(response,"edit_suplidor",{})
+    else:
+        form = SuplidorForm()
+        return render(request, "presup/base_modal.html", {"form":form, "name":name, "data_path":data_path})
+
+def edit_suplidor(request, pk):
+    name = "Editar Suplidor"
+    data_path = "suplidor"
+    x= Suplidor.objects.get(suplidor = pk)
+    if request.method == "POST":
+        form = SuplidorForm(request.POST, instance=x)
+        if form.is_valid():          
+            form.save()
+            response = HttpResponse(status=200)
+            return trigger_client_event(response,"edit_suplidor",{})
+    else:
+        form = SuplidorForm(instance = x)
+        return render(request, "presup/base_modal.html", {"form":form, "name":name, "data_path":data_path})
+ 
+
+def eliminar_suplidor(request, pk):
+    name = "Eliminar Suplidor"
+    data_path = "suplidor"
     if request.method == 'POST':
-        suplidor = request.POST["suplidor"]
-        telefono = request.POST["telefono"]
-        ubicacion = request.POST["ubicacion"]
-        correo = request.POST["correo"]
-        nombre_vendedor = request.POST["nombre_vendedor"]
-
-        x = Suplidor(suplidor = suplidor, telefono = telefono, ubicacion = ubicacion, correo = correo, nombre_vendedor = nombre_vendedor)
-        x.save()
-    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
-
-def eliminar_suplidor(request):
-    if request.method == 'POST':
-        suplidor = request.POST["suplidor-eliminar"]
-
-        x = Suplidor.objects.get(suplidor=suplidor)
+        x = Suplidor.objects.get(suplidor=pk)
         x.delete()
-    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+        response = HttpResponse(status=200)
+        return trigger_client_event(response,"edit_suplidor",{})
+    else:
+        return render(request, "presup/delete_modal.html", {"name":name, "data_path":data_path})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 def cliente(request):  
     listado_material = Material.objects.all().order_by('nombre').values()

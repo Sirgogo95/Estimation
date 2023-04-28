@@ -55,9 +55,9 @@
                     </ul>
                     <form class="d-flex">
                         <button  type="button" hx-get="{% url 'agregar_material' %}" hx-target="#modal_container" class="btn btn-outline-primary me-2" ><i class='bx bx-add-to-queue'></i></button>
-                        <button  type="button" class="btn btn-outline-primary me-2" data-bs-toggle="modal" data-bs-target="#suplidor_modal" onclick="clear_suplidor_modal()"><i class='bx bx-add-to-queue'></i></button>
-                        <button  type="button" class="btn btn-outline-primary me-2" data-bs-toggle="modal" data-bs-target="#precios_modal" onclick="clear_precios_modal()"><i class='bx bx-add-to-queue'></i></button>
-                        <button  type="button" class="btn btn-outline-primary me-2" ><i class='bx bxs-user-detail'></i></button>
+                        <button  type="button" hx-get="{% url 'agregar_suplidor' %}" hx-target="#modal_container" class="btn btn-outline-primary me-2" ><i class='bx bxs-user-plus'></i></button>
+                        <button  type="button" class="btn btn-outline-primary me-2" data-bs-toggle="modal" data-bs-target="#precios_modal" onclick="clear_precios_modal()"><i class='bx bxs-dollar-circle' ></i></button>
+                        <button  type="button" class="btn btn-outline-primary me-2" ><i class='bx bxs-spreadsheet' ></i></button>
                         <input id="searchbox" class="form-control me-2" type="search" placeholder="Search" aria-label="Search" onkeyup="myFunction()" onsearch="myFunction()">
                     </form>
                 </div>
@@ -83,7 +83,7 @@
                     <button hx-get="{% url 'material' %}" hx-target="#body_content" data-bs-dismiss="offcanvas" class="list-group-item list-group-item-action col-12">Analisis</button>
                     <button hx-get="{% url 'material' %}" hx-target="#body_content" data-bs-dismiss="offcanvas" class="list-group-item list-group-item-action col-12">Materiales</button>
                     <button hx-get="{% url 'material' %}" hx-target="#body_content" data-bs-dismiss="offcanvas" class="list-group-item list-group-item-action col-12">Precios</button>
-                    <button hx-get="{% url 'material' %}" hx-target="#body_content" data-bs-dismiss="offcanvas" class="list-group-item list-group-item-action col-12">Suplidores</button>
+                    <button hx-get="{% url 'suplidor' %}" hx-target="#body_content" data-bs-dismiss="offcanvas" class="list-group-item list-group-item-action col-12">Suplidores</button>
                     <button hx-get="{% url 'material' %}" hx-target="#body_content" data-bs-dismiss="offcanvas" class="list-group-item list-group-item-action col-12">Cubicaciones</button>
                     <button hx-get="{% url 'material' %}" hx-target="#body_content" data-bs-dismiss="offcanvas" class="list-group-item list-group-item-action col-12">Cronogramas</button>
                     <button hx-get="{% url 'material' %}" hx-target="#body_content" data-bs-dismiss="offcanvas" class="list-group-item list-group-item-action col-12">Indice de Precios</button>
@@ -98,8 +98,9 @@
 
         
          <!-- Modal -->
-        <div id="modal_container">
+        <div id="modal_container" hx-get="{% url 'material' %}" hx-target="#body_content" hx-trigger="edit_material">
            
+            
         </div>
         
 
@@ -121,20 +122,26 @@
             if (e.detail.target.id === "modal_container") {
                 
                 var myModal = new bootstrap.Modal(document.getElementById("modal"), {});
-                myModal.show()
+                myModal.show();
                 
             }})
 
-
-            htmx.on("htmx:beforeSwap", (e) => {
-               
-            // Empty response targeting #dialog => hide the modal
-            if (e.detail.target.id === "modal_container" && e.detail.xhr.status === 204) {
+            
+            htmx.on("edit_material", (e) => {
+                 
+                var myModal = bootstrap.Modal.getInstance(document.getElementById("modal"));
+                myModal.hide();
                 
-                var myModal = new bootstrap.Modal(document.getElementById("modal"), {});
-                myModal.hide()
-                e.detail.shouldSwap = false
-            }})
+            })
+
+
+            htmx.on("edit_suplidor", (e) => {
+                 
+                 var myModal = bootstrap.Modal.getInstance(document.getElementById("modal"));
+                 myModal.hide();
+                 
+             })
+           
   
         </script>
 

@@ -20,13 +20,14 @@ urlpatterns = [
     path("material/delete/<str:pk>", views.delete_material, name="eliminar_material"),
 
 
-
-
-
-
     path("suplidor", views.suplidor, name="suplidor"),
-    path("add_suplidor", views.add_suplidor, name="add_suplidor"),
-    path("eliminar_suplidor", views.eliminar_suplidor, name="eliminar_suplidor"),
+    path("suplidor/add", views.add_suplidor, name="agregar_suplidor"),
+    path("suplidor/edit/<str:pk>", views.edit_suplidor, name="editar_suplidor"),
+    path("suplidor/delete/<str:pk>", views.eliminar_suplidor, name="eliminar_suplidor"),
+
+
+
+
     path("proyecto", views.proyecto, name="proyecto"),
     path("cliente", views.cliente, name="cliente"),
     path("add_cliente", views.add_cliente, name="add_cliente")

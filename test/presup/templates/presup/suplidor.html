@@ -20,18 +20,15 @@
                 <td>{{list.correo}}</td>
                 <td>{{list.nombre_vendedor}}</td>
                 <td>
-                    <button id ="{{list.suplidor}}" 
-                    data-suplidor="{{list.suplidor}}" 
-                    data-telefono="{{list.telefono}}"
-                    data-ubicacion="{{list.ubicacion}}" 
-                    data-correo="{{list.correo}}" 
-                    data-nombre_vendedor="{{list.nombre_vendedor}}"
-                    type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#suplidor_modal" 
-                    onClick="fill_suplidor_modal(this.id)">
-                    <i class='bx bxs-edit'></i>
+                    <button type="button" class="btn btn-success" hx-get="{% url 'editar_suplidor' list.suplidor %}" hx-target="#modal_container">
+                        <i class='bx bxs-edit'></i>
                     </button>
                 </td>  
-                <td><button id ="{{list.suplidor}}" type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#eliminar_suplidor_modal" onClick="fill_eliminar_suplidor_modal(this.id)"><i class='bx bxs-trash'></i></button></td>               
+                <td>
+                    <button type="button" class="btn btn-danger" hx-get="{% url 'eliminar_suplidor' list.suplidor %}" hx-target="#modal_container">
+                        <i class='bx bxs-trash'></i>
+                    </button>
+                </td>               
             </tr>
             {% endfor %}
         </tbody>
