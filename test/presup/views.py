@@ -12,19 +12,6 @@ def index(request):
     return render(request, "presup/index.html", {"listado_material":listado_material, "listado_suplidor":listado_suplidor})
 
 
-def analisis(request):
-    if request.method == "POST":
-        form = ProyectoForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
-    form = ProyectoForm()
-    return render(request, "presup/analisis.html", {"form":form})
-
-def analisis2(request, pk):
-    if request.method == "POST":
-        x= Proyecto.objects.get(codigo_proyecto = pk)
-        x.delete()
-        return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 
 
@@ -169,7 +156,7 @@ def edit_suplidor(request, pk):
         return render(request, "presup/base_modal.html", {"form":form, "name":name, "data_path":data_path})
  
 
-def eliminar_suplidor(request, pk):
+def delete_suplidor(request, pk):
     name = "Eliminar Suplidor"
     data_path = "suplidor"
     if request.method == 'POST':
@@ -234,8 +221,57 @@ def add_cliente(request):
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 
-def proyecto(request):  
-    listado_material = Material.objects.all().order_by('nombre').values()
-    listado_suplidor = Suplidor.objects.all().order_by('suplidor').values()        
-    listado = Suplidor.objects.all()
-    return render(request, "presup/proyecto.html", {"listado_material":listado_material, "listado_suplidor":listado_suplidor, "listado":listado})
+
+
+
+
+
+
+
+
+
+
+def proyecto(request):        
+    listado = Proyecto.objects.all()
+    return render(request, "presup/proyecto.html", {"listado":listado})
+
+
+def add_proyecto(request):
+    name = "Agregar proyecto"
+    data_path = "proyecto" 
+    if request.method == "POST":
+        form = ProyectoForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            response = HttpResponse(status=200)
+            return trigger_client_event(response,"edit_proyecto",{})
+    else:
+        form = ProyectoForm()
+        return render(request, "presup/base_modal.html", {"form":form, "name":name, "data_path":data_path})
+
+
+def edit_proyecto(request, pk):
+    name = "Editar proyecto"
+    data_path = "proyecto"
+    x= Material_Analisis.objects.get(codigo_proyecto = pk)
+    if request.method == "POST":
+        form = ProyectoForm(request.POST, request.FILES, instance=x)
+        if form.is_valid():          
+            form.save()
+            response = HttpResponse(status=200)
+            return trigger_client_event(response,"edit_proyecto",{})
+    else:
+        form = ProyectoForm(instance = x)
+        return render(request, "presup/base_modal.html", {"form":form, "name":name, "data_path":data_path})
+        
+
+def delete_proyecto(request, pk):
+    name = "Eliminar proyecto"
+    data_path = "proyecto"
+    if request.method == 'POST':
+        x = Proyecto.objects.get(codigo_proyecto = pk)
+        x.delete()
+        response = HttpResponse(status=200)
+        return trigger_client_event(response,"edit_proyecto",{})
+    else:
+        return render(request, "presup/delete_modal.html", {"name":name, "data_path":data_path})

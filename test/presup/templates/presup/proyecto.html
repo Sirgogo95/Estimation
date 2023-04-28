@@ -1,22 +1,27 @@
 {% load static %}
 
 <div>
+    {% for list in listado %}
     <div class="card flex-row m-3" >
         <div>
-            <img src="{% static 'presup/Test.png' %}" width="150" height="150" class="m-3" alt="...">
+            <img src="{{list.imagen}}" width="150" height="150" class="m-3" alt="...">
         </div>
         <div class="m-3 col-10">
-            <h5 class="card-title">Parques del Este</h5>
+            <h5 class="card-title">{{list.nombre}}</h5>
             <div class="row mw-100">
                 <h6 class="col-1">Cliente</h6>
-                <span class="card-text col-10">Arq. Hjalmar Decena</span>
+                <span class="card-text col-10">{{list.codigo_cliente}}</span>
             </div>
             <div class="row mw-100">
                 <h6 class="col-1">Tipo Proyecto</h6>
                 <span class="card-text col-10">Multiples Edificios de bajo costo</span>
+                <button type="button" class="btn btn-danger" hx-get="{% url 'eliminar_proyecto' list.codigo_proyecto %}" hx-target="#modal_container">
+                    <i class='bx bxs-trash'></i>
+                </button>
             </div>
         </div>
     </div>
+    {% endfor %}
 
 </div>
 

@@ -5,9 +5,7 @@ from . import views
 
 urlpatterns = [
     path("", views.index, name="index"),
-    path("analisis", views.analisis, name="analisis"),
-    path("analisis/eliminar/<str:pk>", views.analisis2, name="analisis2"),
-
+    
 
 
     path("precios", views.precios, name="precios"),
@@ -25,12 +23,16 @@ urlpatterns = [
     path("suplidor", views.suplidor, name="suplidor"),
     path("suplidor/add", views.add_suplidor, name="agregar_suplidor"),
     path("suplidor/edit/<str:pk>", views.edit_suplidor, name="editar_suplidor"),
-    path("suplidor/delete/<str:pk>", views.eliminar_suplidor, name="eliminar_suplidor"),
-
-
+    path("suplidor/delete/<str:pk>", views.delete_suplidor, name="eliminar_suplidor"),
 
 
     path("proyecto", views.proyecto, name="proyecto"),
+    path("proyecto/add", views.add_proyecto, name="agregar_proyecto"),
+    path("proyecto/edit/<str:pk>", views.edit_proyecto, name="editar_proyecto"),
+    path("proyecto/delete/<str:pk>", views.delete_proyecto, name="eliminar_proyecto"),
+
+
+
     path("cliente", views.cliente, name="cliente"),
     path("add_cliente", views.add_cliente, name="add_cliente")
 ]
