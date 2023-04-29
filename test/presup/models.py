@@ -1,4 +1,18 @@
 from django.db import models
+from django.core.files.storage import FileSystemStorage
+from django.conf import settings
+
+
+image_storage = FileSystemStorage(
+    # Physical file location ROOT
+    location=u'{0}/'.format(settings.MEDIA_ROOT),
+    # Url for file
+    base_url=u'{0}/'.format(settings.MEDIA_URL),
+)
+
+def image_directory_path(instance, filename):
+    # file will be uploaded to MEDIA_ROOT/images/<filename>
+    return u'images/{0}'.format(filename)
 
 
 
@@ -68,7 +82,7 @@ class Cliente(models.Model):
 class Proyecto(models.Model):
     codigo_proyecto = models.CharField(max_length=64, primary_key=True)
     codigo_cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE, related_name="proyectos")
-    imagen = models.ImageField(null=True, blank=True, upload_to="media/images/")
+    imagen = models.ImageField(null=True, blank=True, upload_to=image_directory_path, storage=image_storage)
     nombre = models.CharField(max_length=200, null=True, blank=True, default="")
     fecha = models.DateField(null=True, blank=True, default="")
 

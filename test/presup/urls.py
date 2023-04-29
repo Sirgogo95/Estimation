@@ -1,4 +1,6 @@
 from django.urls import path
+from django.conf import settings
+from django.conf.urls.static import static
 
 from . import views
 
@@ -36,3 +38,6 @@ urlpatterns = [
     path("cliente", views.cliente, name="cliente"),
     path("add_cliente", views.add_cliente, name="add_cliente")
 ]
+
+if settings.DEBUG:  # new
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
