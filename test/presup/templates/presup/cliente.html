@@ -3,34 +3,48 @@
 
 
 <div>
+    {% for list in listado %}
     <div class="accordion  m-3" id="accordionFlushExample">
         <div class="accordion-item">
             <h2 class="accordion-header" id="flush-headingOne">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-                    Arq Hjalmar Decena
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#{{list.codigo_cliente}}" aria-expanded="false" aria-controls="flush-collapseOne">
+                    {{list.nombre}}
                 </button>
             </h2>
-            <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+
+
+            <div id="{{list.codigo_cliente}}" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
                 <div class="accordion-body">
+
+                    {% for proyecto in list.proyectos.all %}
 
                     <div class="card flex-row m-3" >
                         <div>
-                            <img src="{% static 'presup/Test.png' %}" width="80" height="80" class="m-3" alt="...">
+                            <img src="/presup{{ proyecto.imagen.url }}" width="80" height="80" class="m-3" alt="...">
                         </div>
                         <div class="m-3 col-10">
-                            <h5 class="card-title">Parques del Este</h5>
+                            <h5 class="card-title">{{proyecto.nombre}}</h5>
                             <div class="row mw-100">
                                 <h6 class="col-1">Tipo Proyecto</h6>
                                 <span class="card-text col-10">Multiples Edificios de bajo costo</span>
                             </div>
+                            <button type="button" class="btn btn-success col-1 m-1" hx-get="{% url 'editar_proyecto' proyecto.codigo_proyecto %}" hx-target="#modal_container">
+                                <i class='bx bxs-edit'></i>
+                            </button>
+                            <button type="button" class="btn btn-danger col-1 m-1" hx-get="{% url 'eliminar_proyecto' proyecto.codigo_proyecto %}" hx-target="#modal_container">
+                                <i class='bx bxs-trash'></i>
+                            </button>
                         </div>
                     </div> 
-                
+                    {% endfor %}
                 </div>
             </div>
+           
+
         </div>
 
     </div>
+    {% endfor %}
 </div>
 
 

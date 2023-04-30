@@ -2,7 +2,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
 from .models import Material, Suplidor, Material_Analisis, Cliente, Proyecto
 from django.core.exceptions import ObjectDoesNotExist
-from .forms import ProyectoForm, MaterialForm, SuplidorForm, PreciosForm
+from .forms import ProyectoForm, MaterialForm, SuplidorForm, PreciosForm, ClienteForm
 from django_htmx.http import trigger_client_event
 
 # Create your views here.
@@ -205,21 +205,49 @@ def delete_suplidor(request, pk):
 
 
 
-def cliente(request):  
-    listado_material = Material.objects.all().order_by('nombre').values()
-    listado_suplidor = Suplidor.objects.all().order_by('suplidor').values()        
+def cliente(request):     
     listado = Cliente.objects.all()
-    return render(request, "presup/cliente.html", {"listado_material":listado_material, "listado_suplidor":listado_suplidor, "listado":listado})
+    return render(request, "presup/cliente.html", {"listado":listado})
 
-def add_cliente(request): 
+def add_cliente(request):
+    name = "Agregar cliente"
+    data_path = "cliente" 
+    if request.method == "POST":
+        form = ClienteForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            response = HttpResponse(status=200)
+            return trigger_client_event(response,"edit_cliente",{})
+    else:
+        form = ClienteForm()
+        return render(request, "presup/base_modal.html", {"form":form, "name":name, "data_path":data_path})
+
+
+def edit_cliente(request, pk):
+    name = "Editar cliente"
+    data_path = "cliente"
+    x= Cliente.objects.get(codigo_cliente = pk)
+    if request.method == "POST":
+        form = ClienteForm(request.POST, request.FILES, instance=x)
+        if form.is_valid():          
+            form.save()
+            response = HttpResponse(status=200)
+            return trigger_client_event(response,"edit_cliente",{})
+    else:
+        form = ClienteForm(instance = x)
+        return render(request, "presup/base_modal.html", {"form":form, "name":name, "data_path":data_path})
+        
+
+def delete_cliente(request, pk):
+    name = "Eliminar cliente"
+    data_path = "cliente"
     if request.method == 'POST':
-        codigo = request.POST["cliente_codigo"]
-        nombre = request.POST["cliente_nombre"]
-       
-        x = Cliente(codigo_cliente = codigo, nombre = nombre) 
-        x.save() 
-    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
-
+        x = Cliente.objects.get(codigo_cliente = pk)
+        x.delete()
+        response = HttpResponse(status=200)
+        return trigger_client_event(response,"edit_cliente",{})
+    else:
+        return render(request, "presup/delete_modal.html", {"name":name, "data_path":data_path})
 
 
 
@@ -253,7 +281,7 @@ def add_proyecto(request):
 def edit_proyecto(request, pk):
     name = "Editar proyecto"
     data_path = "proyecto"
-    x= Material_Analisis.objects.get(codigo_proyecto = pk)
+    x= Proyecto.objects.get(codigo_proyecto = pk)
     if request.method == "POST":
         form = ProyectoForm(request.POST, request.FILES, instance=x)
         if form.is_valid():          

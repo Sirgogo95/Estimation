@@ -36,7 +36,10 @@ urlpatterns = [
 
 
     path("cliente", views.cliente, name="cliente"),
-    path("add_cliente", views.add_cliente, name="add_cliente")
+    path("cliente/add", views.add_cliente, name="agregar_cliente"),
+    path("cliente/edit/<str:pk>", views.edit_cliente, name="editar_cliente"),
+    path("cliente/delete/<str:pk>", views.delete_cliente, name="eliminar_cliente"),
+
 ]
 
 if settings.DEBUG:  # new

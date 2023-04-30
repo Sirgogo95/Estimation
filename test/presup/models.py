@@ -3,12 +3,7 @@ from django.core.files.storage import FileSystemStorage
 from django.conf import settings
 
 
-image_storage = FileSystemStorage(
-    # Physical file location ROOT
-    location=u'{0}/'.format(settings.MEDIA_ROOT),
-    # Url for file
-    base_url=u'{0}/'.format(settings.MEDIA_URL),
-)
+image_storage = FileSystemStorage()
 
 def image_directory_path(instance, filename):
     # file will be uploaded to MEDIA_ROOT/images/<filename>

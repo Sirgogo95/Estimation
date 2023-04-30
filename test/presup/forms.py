@@ -1,7 +1,7 @@
 from django import forms
 from django.forms import ModelForm
 
-from .models import Material, Suplidor, Material_Analisis, Proyecto
+from .models import Material, Suplidor, Material_Analisis, Proyecto, Cliente
 
 
 class DateInput(forms.DateInput):
@@ -38,3 +38,11 @@ class PreciosForm(ModelForm):
         widgets = {
             'fecha': DateInput(),
         }
+
+
+
+class ClienteForm(ModelForm):
+
+    class Meta:
+        model = Cliente
+        fields = ['codigo_cliente', 'nombre']
